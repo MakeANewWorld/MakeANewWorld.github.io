@@ -1,0 +1,11 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.nav-link:hover:not([href="/"]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
