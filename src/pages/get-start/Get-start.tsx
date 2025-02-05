@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { Container, Button, ListGroup, Collapse, Card } from 'react-bootstrap';
+import { Container, Button, ListGroup, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactMarkdown from 'react-markdown';
 import WindowSizeUtils from './windowSize'; // 確保你有這個工具
