@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: 'src/pages/html',
+  root: '/src/pages/html/',
   plugins: [react()],
   build: {
     rollupOptions: {
@@ -11,11 +11,6 @@ export default defineConfig({
         main: 'index.html',
         getStart: 'get-start.html',
         play: 'play.html',
-      },
-      output: {
-        manualChunks: {
-          lodash: ['lodash']
-        }
       },
     },
   },
