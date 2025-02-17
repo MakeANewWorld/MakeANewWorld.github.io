@@ -11,6 +11,9 @@ export default defineConfig({
         getStart: '/src/pages/html/get-start.html',
         play: '/src/pages/html/play.html',
       },
+      output: {
+        dir: 'dist/',
+      },
     },
   },
 })
