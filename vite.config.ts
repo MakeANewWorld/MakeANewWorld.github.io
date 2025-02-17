@@ -1,11 +1,11 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import react from '@vitejs/plugin-react-swc'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
+// https://vitejs.dev/config/
 export default defineConfig({
-  root:'./src/pages/html',
+  root: "./src/pages/html",
+  plugins: [react()],
   build: {
     rollupOptions: {
       input: {
@@ -15,4 +15,4 @@ export default defineConfig({
       },
     },
   },
-})
+});
