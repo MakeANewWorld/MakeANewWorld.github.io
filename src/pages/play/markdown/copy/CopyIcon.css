@@ -1,0 +1,15 @@
+#copy-icon {
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+#check-icon {
+    cursor: pointer;
+    color: green;
+}

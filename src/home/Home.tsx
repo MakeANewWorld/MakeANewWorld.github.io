@@ -5,10 +5,9 @@ import { Button } from 'react-bootstrap';
 
 function App() {
   useLayoutEffect(() => {
-    document.body.setAttribute(
-      'data-bs-theme',
-      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    );
+    const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    document.body.setAttribute('data-bs-theme', mode);
+    (document.querySelector(':root') as HTMLElement).style.colorScheme = mode;
   }, []);
   return (
     <>
@@ -48,7 +47,7 @@ function App() {
             <li><a href="/" className="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="#" className="nav-link px-2 text-body-secondary">Github</a></li>
             <li><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
-            <li><a href="#" className="nav-link px-2 text-body-secondary">Play</a></li>
+            <li><a href="/play" className="nav-link px-2 text-body-secondary">Play</a></li>
           </ul>
 
           {/* <div className="col-md-3 text-end">
@@ -59,7 +58,7 @@ function App() {
       </div>
 
       <div className="px-4 py-5 my-5 text-center">
-        <img className="d-block mx-auto mb-4" src="/src/assets/bootstrap-logo.svg" alt="" width="72" height="57" />
+        <img className="d-block mx-auto mb-4" src="bootstrap-logo.svg" alt="" width="72" height="57" />
         <h1 className="display-5 fw-bold text-body-emphasis">Centered hero</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world's most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
@@ -81,7 +80,7 @@ function App() {
             <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary">Home</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Github</a></li>
             <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Play</a></li>
+            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary">Play</a></li>
           </ul>
         </footer>
       </div>

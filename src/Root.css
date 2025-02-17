@@ -1,0 +1,16 @@
+.cur-point {
+    cursor: pointer;
+}
+
+.top-10px {
+    top: 10px;
+}
+
+.right-10px {
+    right: 10px;
+}
+
+.hover-re-opt:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}

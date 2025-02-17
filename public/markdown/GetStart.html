@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x5b89;&#x88dd; JetBrains Runtime&#xff08;DCEVM &#x7528;&#xff09;&#x3001;Fabric&#xff08;&#x958b;&#x767c;&#x74b0;&#x5883;&#xff09;&#x3001;JDK 21&#xff08;&#x542b; OpenGL &#x5eab;&#xff09;&#x8207; IntelliJ IDEA</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="安裝-jetbrains-runtimedcevm-用fabric開發環境jdk-21含-opengl-庫與-intellij-idea">安裝 JetBrains Runtime（DCEVM 用）、Fabric（開發環境）、JDK 21（含 OpenGL 庫）與 IntelliJ IDEA</h1>
+<p>本指南適用於完全沒有電腦基礎的使用者，並且專門針對 Windows 平台。</p>
+<h2 id="1-安裝-jdk-21microsoft-提供">1. 安裝 JDK 21（Microsoft 提供）</h2>
+<p>Microsoft 的 JDK 內建 OpenGL 庫，適合我們的需求。</p>
+<ol>
+<li>
+<p><strong>下載 JDK 21</strong>：</p>
+<ul>
+<li>進入 <a href="https://learn.microsoft.com/en-us/java/openjdk/download">Microsoft OpenJDK 官網</a>。</li>
+<li>找到 <code>Windows x64</code> 版本的 <strong>JDK 21</strong>，下載 <code>.msi</code> 安裝檔。</li>
+</ul>
+</li>
+<li>
+<p><strong>安裝 JDK</strong>：</p>
+<ul>
+<li>執行剛剛下載的 <code>.msi</code> 檔案。</li>
+<li>一路點擊 <code>Next</code>，直到安裝完成。</li>
+<li><strong>記住安裝路徑</strong>（預設為 <code>C:\Program Files\Microsoft\jdk-21</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>設定環境變數</strong>：</p>
+<ul>
+<li>按 <code>Win + S</code> 搜尋 <code>環境變數</code>，選擇 <code>編輯系統環境變數</code>。</li>
+<li>在 <code>系統變數</code> 中找到 <code>Path</code>，點擊 <code>編輯</code>。</li>
+<li>點擊 <code>新增</code>，輸入 <code>C:\Program Files\Microsoft\jdk-21\bin</code>。</li>
+<li>點擊 <code>確定</code> 保存設定。</li>
+</ul>
+</li>
+<li>
+<p><strong>確認 JDK 是否成功安裝</strong>：</p>
+<ul>
+<li>按 <code>Win + R</code>，輸入 <code>cmd</code>，按 <code>Enter</code>。</li>
+<li>輸入以下指令檢查 JDK 版本：<pre><code class="language-sh">java -version
+</code></pre>
+</li>
+<li>你應該會看到類似 <code>openjdk version &quot;21&quot;</code> 的輸出。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-安裝-jetbrains-runtimedcevm">2. 安裝 JetBrains Runtime（DCEVM）</h2>
+<p>DCEVM 允許在 Java 進程運行時重新載入修改過的類，而 <strong>JetBrains Runtime</strong> 提供了最相容的環境。</p>
+<ol>
+<li>
+<p><strong>下載 JetBrains Runtime</strong>：</p>
+<ul>
+<li>進入 <a href="https://github.com/JetBrains/JetBrainsRuntime/releases">JetBrains Runtime 下載頁面</a>。</li>
+<li>找到最新的 <strong>JBR 17（DCEVM）</strong> 版本，下載 <code>Windows x64</code> 的 <code>.zip</code> 檔案。</li>
+</ul>
+</li>
+<li>
+<p><strong>解壓縮並設定</strong>：</p>
+<ul>
+<li>把 <code>.zip</code> 解壓縮到 <code>C:\JetBrains\jbr_dcevm</code>（可自行選擇路徑）。</li>
+<li>在 <code>環境變數</code> 中新增 <code>JAVA_HOME</code>，值設為 <code>C:\JetBrains\jbr_dcevm</code>。</li>
+<li>編輯 <code>Path</code> 變數，新增 <code>C:\JetBrains\jbr_dcevm\bin</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>確認 JBR 是否成功安裝</strong>：</p>
+<ul>
+<li>打開 <code>cmd</code>，輸入：<pre><code class="language-sh">java -version
+</code></pre>
+</li>
+<li>你應該會看到 <code>JetBrains Runtime</code> 相關訊息。</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-安裝-fabric開發環境">3. 安裝 Fabric（開發環境）</h2>
+<ol>
+<li>
+<p><strong>安裝 Fabric Loom</strong>：</p>
+<ul>
+<li>下載 <a href="https://gradle.org/install/">Gradle</a> 並安裝。</li>
+<li>下載 <a href="https://fabricmc.net/develop/">Fabric Loom</a> 並設定專案。</li>
+</ul>
+</li>
+<li>
+<p><strong>建立 Fabric 開發專案</strong>：</p>
+<ul>
+<li>在 <code>cmd</code> 中執行：<pre><code class="language-sh">git <span class="hljs-built_in">clone</span> https://github.com/FabricMC/fabric-example-mod.git
+<span class="hljs-built_in">cd</span> fabric-example-mod
+./gradlew build
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>確認環境是否可用</strong>：</p>
+<ul>
+<li>檢查 <code>build/libs</code> 資料夾是否有 <code>.jar</code> 文件。</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-安裝-intellij-idea">4. 安裝 IntelliJ IDEA</h2>
+<ol>
+<li>
+<p><strong>下載並安裝 IDEA</strong>：</p>
+<ul>
+<li>進入 <a href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA 官網</a>。</li>
+<li>下載 <code>Community</code>（免費版）或 <code>Ultimate</code>（付費版）。</li>
+<li>執行 <code>.exe</code> 安裝程式，選擇 <strong>JetBrains Runtime</strong> 作為預設 JDK。</li>
+</ul>
+</li>
+<li>
+<p><strong>設定 Fabric 專案</strong>：</p>
+<ul>
+<li>在 IDEA 中打開 <code>fabric-example-mod</code>。</li>
+<li>設定 <code>Gradle JVM</code> 為 <code>JetBrains Runtime</code>。</li>
+<li>執行 <code>./gradlew genIntelliJRuns</code> 來生成執行設定。</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-總結">5. 總結</h2>
+<ul>
+<li><strong>JDK 21</strong>（Microsoft）：提供 OpenGL 支援。</li>
+<li><strong>JetBrains Runtime（DCEVM）</strong>：允許熱加載。</li>
+<li><strong>Fabric 開發環境</strong>：用於 Minecraft Mod 開發。</li>
+<li><strong>IntelliJ IDEA</strong>：作為開發工具。</li>
+</ul>
+<p>到這裡，你的環境就準備好了！🚀
+`</p>
+
+            
+            
+        </body>
+        </html>

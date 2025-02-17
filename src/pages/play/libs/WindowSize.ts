@@ -15,21 +15,26 @@ export default class WindowSizeUtils {
     public static getHeight(): number {
         return WindowSizeUtils.windowSize.height;
     }
-    
+
     public static setWindowSize(window: Window): void {
         WindowSizeUtils.windowSize.width = window.outerWidth;
         WindowSizeUtils.windowSize.height = window.outerHeight;
     }
-    
+
     public static handleResize(): void {
         WindowSizeUtils.setWindowSize(window);
         WindowSizeUtils.showObj();
     }
 
     public static showObj(): void {
-        const halfScreenWidth: number = window.screen.availWidth / 2;
-        const screenHeight: number = window.screen.availHeight;
+        if (window.location.href.includes('localhost:') || window.location.href.includes('127.0.0.1:')) { 
+            WindowSizeUtils.setIsSplit(true);
+            return; 
+        }
         
+        const halfScreenWidth: number = window.screen.availWidth / 3;
+        const screenHeight: number = window.screen.availHeight;
+
         if (Math.abs(WindowSizeUtils.getWidth() - halfScreenWidth) < WindowSizeUtils.tolerance) {
             if (Math.abs(WindowSizeUtils.getHeight() - screenHeight) < WindowSizeUtils.tolerance) {
                 WindowSizeUtils.setIsSplit(true);
@@ -48,7 +53,7 @@ export default class WindowSizeUtils {
             throw new Error('setIsSplitFunc is not ready.');
         }
     }
-    
+
     public static registerEvent(setIsSplitFunc: React.Dispatch<React.SetStateAction<boolean>>): void {
         WindowSizeUtils.setIsSplitFunc = setIsSplitFunc;
         window.addEventListener('resize', WindowSizeUtils.handleResize);
