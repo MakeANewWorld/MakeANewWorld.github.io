@@ -12,7 +12,7 @@ export default defineConfig({
         play: '/src/pages/html/play.html',
       },
       output: {
-        dir: 'dist/',
+        dir: '../dist'
       },
     },
   },
