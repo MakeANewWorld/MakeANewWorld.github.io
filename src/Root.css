@@ -1,4 +1,5 @@
 @import url(/public/fonts/NotoSansTC.css);
+@import url(/public/fonts/JetBrainsMono.css);
 
 .cur-point {
     cursor: pointer;
@@ -57,12 +58,41 @@ video {
     background-color: var(--bs-secondary-bg);
     border-radius: 10px;
     padding: 20px;
-  }
+}
 
-  .btn-disable-border {
+.btn-disable-border {
     border: none;
-  }
-  
-  .btn-disable-border:disabled {
+}
+
+.btn-disable-border:disabled {
     border: none;
-  }
+}
+
+.markdown-content {
+    text-align: left;
+}
+
+.markdown-content p, 
+.markdown-content li, 
+.markdown-content blockquote {
+    font-family: "Noto Sans TC", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.markdown-content h1, 
+.markdown-content h2, 
+.markdown-content h3, 
+.markdown-content h4, 
+.markdown-content h5, 
+.markdown-content h6 {
+    font-family: "Noto Sans TC", serif;
+}
+
+.markdown-content code * {
+    font-family: "JetBrains Mono", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}

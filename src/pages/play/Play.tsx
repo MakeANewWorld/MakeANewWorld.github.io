@@ -40,7 +40,7 @@ function App() {
   return (
     <Container fluid className="p-0 position-relative min-vh-100">
       <Top className="position-fixed top-0 start-0 end-0 shadow-sm bg-body" title={title}></Top>
-      <MarkdownRenderer className="p-4 mt-5" markdownContent={markdownContent} setTitle={setTitle} />
+      <MarkdownRenderer className="p-4 mt-5 markdown-content" markdownContent={markdownContent} setTitle={setTitle} />
     </Container >
   );
 }
