@@ -26,21 +26,23 @@ export default class Task {
     private readonly points: number;
     private readonly name: string;
     private readonly unlockPoints: number;
+    private readonly path: string;
 
     private completed: boolean = false;
     private unlocked: boolean = false;
 
     private readonly hashCode: string;
 
-    constructor(points: number, name: string, unlockPoints?: number) {
-        if (!points || points === 0 || !name || name.length === 0 || (unlockPoints && unlockPoints === 0)) {
-            throw new Error(`Invalid Arguments: points=${points}, text=${name}, unlockPoints=${unlockPoints}`);
+    constructor(points: number, name: string, path: string, unlockPoints: number) {
+        if (!points || points === 0 || points < 0 || (unlockPoints === undefined) || unlockPoints < 0 || !name || name.length === 0 || !path || path.length === 0) {
+            throw new Error(`Invalid Arguments: points=${points}, text=${name}, path=${path}, unlockPoints=${unlockPoints}`);
         }
 
         this.points = points;
+        this.path = path;
         this.name = name;
-        this.unlockPoints = unlockPoints || 0;
-        this.needUnlock = unlockPoints !== undefined;
+        this.unlockPoints = unlockPoints;
+        this.needUnlock = unlockPoints > 0;
         
         if (!this.needUnlock) {
             this.unlocked = true;
@@ -98,6 +100,10 @@ export default class Task {
         return this.name;
     }
 
+    public getPath(): string {
+        return this.path;
+    }
+
     public isCompleted(): boolean {
         return this.completed;
     }
@@ -116,13 +122,5 @@ export default class Task {
 
     public getHashCode(): string {
         return this.hashCode;
-    }
-
-    static {
-        new Task(20, "完成第一個任務");
-        new Task(30, "閱讀一篇技術文章");
-        new Task(30, "寫一段 JavaScript 程式碼");
-        new Task(50, "解決算法題", 30);
-        new Task(300, "開發一個小專案", 100);
     }
 }

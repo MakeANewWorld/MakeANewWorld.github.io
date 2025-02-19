@@ -1,13 +1,11 @@
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import './MarkdownRenderer.css';
 import CopyIcon from "./copy/CopyIcon";
 
 type MarkdownRendererProps = {
     markdownContent: string,
-    className?: string,
-    setTitle: (title: string) => void
+    className?: string
 };
 
 function code({ node, inline, className, children, ...props }: any) {
@@ -29,9 +27,7 @@ function code({ node, inline, className, children, ...props }: any) {
     </code>;
 }
 
-export default function MarkdownRenderer({ className, markdownContent, setTitle }: MarkdownRendererProps) {
-    setTitle(markdownContent.split('\n')[0].replace('/r', ''));
-    
+export default function MarkdownRenderer({ className, markdownContent }: MarkdownRendererProps) {
     return (
         <Markdown components={{ code }} className={className}>
             {markdownContent}

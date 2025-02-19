@@ -1,17 +1,13 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Top from './topBar/TopBar';
 import MarkdownRenderer from './markdown/MarkdownRenderer';
-import './Play.css';
 import WindowSizeUtils from './libs/WindowSize';
+import { setColorScheme } from '../../Root';
 
 function App() {
-  useLayoutEffect(() => {
-    const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    document.body.setAttribute('data-bs-theme', mode);
-    (document.querySelector(':root') as HTMLElement).style.colorScheme = mode;
-  }, []);
+  setColorScheme();
 
   const [isSplit, setIsSplit] = useState(false);
   useEffect(() => {
@@ -20,14 +16,20 @@ function App() {
     return WindowSizeUtils.unregisterEvent;
   }, []);
 
-  const [markdownContent, setMarkdownContent] = useState<string>('');
-  useEffect(() => {
-    fetch('/markdown/GetStart.md')
-      .then((res) => res.text())
-      .then((text) => setMarkdownContent(text));
-  }, []);
-
   const [title, setTitle] = useState<string>('');
+
+  const [markdownContent, setMarkdownContent] = useState<string>('');
+  const loadMarkdown = (path: string) => {
+    fetch(path)
+      .then((res) => res.text())
+      .then((text) => {
+        setMarkdownContent(text);
+        setTitle(text.split('\n')[0].replace('/r', '').replace('#', ''));
+      });
+  };
+  useEffect(() => {
+    loadMarkdown('/markdown/GetStart.md');
+  }, []);
 
   if (!isSplit) {
     return (
@@ -39,8 +41,8 @@ function App() {
 
   return (
     <Container fluid className="p-0 position-relative min-vh-100">
-      <Top className="position-fixed top-0 start-0 end-0 shadow-sm bg-body" title={title}></Top>
-      <MarkdownRenderer className="p-4 mt-5 markdown-content" markdownContent={markdownContent} setTitle={setTitle} />
+      <Top className="fixed-top d-flex flex-column align-items-center top-0 start-0 end-0 shadow-sm bg-body" title={title} setMarkdownContent={loadMarkdown}></Top>
+      <MarkdownRenderer className="p-4 mt-5 markdown-content" markdownContent={markdownContent} />
     </Container >
   );
 }

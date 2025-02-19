@@ -26,6 +26,10 @@
     background-color: var(--bs-secondary-bg);
 }
 
+.bg-inverse-click:first-child:active {
+    background-color: var(--bs-body-bg);
+}
+
 .noto {
     font-family: "Noto Sans TC", serif;
     font-optical-sizing: auto;
@@ -72,8 +76,8 @@ video {
     text-align: left;
 }
 
-.markdown-content p, 
-.markdown-content li, 
+.markdown-content p,
+.markdown-content li,
 .markdown-content blockquote {
     font-family: "Noto Sans TC", serif;
     font-optical-sizing: auto;
@@ -81,11 +85,11 @@ video {
     font-style: normal;
 }
 
-.markdown-content h1, 
-.markdown-content h2, 
-.markdown-content h3, 
-.markdown-content h4, 
-.markdown-content h5, 
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
 .markdown-content h6 {
     font-family: "Noto Sans TC", serif;
 }
@@ -95,4 +99,25 @@ video {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+}
+
+#root {
+    margin: 0 auto;
+    text-align: center;
+}
+
+mark {
+    padding: 0px;
+    border-radius: 0px;
+    background: none;
+    background-color: none;
+    border-bottom: 3px solid #d8ebb7;
+
+    &.warning {
+        border-bottom: 3px solid #f5deb3;
+    }
+
+    &.danger {
+        border-bottom: 3px solid #ffb6c1;
+    }
 }

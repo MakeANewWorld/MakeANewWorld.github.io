@@ -1,14 +1,11 @@
-import { useLayoutEffect } from 'react';
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
+import { setColorScheme } from '../Root';
+import { FiX } from 'react-icons/fi';
 
 function App() {
-  useLayoutEffect(() => {
-    const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    document.body.setAttribute('data-bs-theme', mode);
-    (document.querySelector(':root') as HTMLElement).style.colorScheme = mode;
-  }, []);
+  setColorScheme();
   return (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" className="d-none">
@@ -39,48 +36,60 @@ function App() {
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div className="col-md-3 mb-2 mb-md-0">
             <a href="/" className="d-inline-flex link-body-emphasis text-decoration-none">
-              <svg className="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlinkHref="#bootstrap" /></svg>
+              <img className='bi' src="crepper.svg" alt="Crepper" width="40" height="32" />
             </a>
           </div>
 
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" className="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" className="nav-link px-2 text-body-secondary">Github</a></li>
-            <li><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
-            <li><a href="/play" className="nav-link px-2 text-body-secondary">Play</a></li>
+            <li><a href="/" className="nav-link px-2 link-secondary noto">家</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">Github</a></li>
+            <li><a href="#" className="nav-link px-2 text-body-secondary noto">關於</a></li>
+            <li><a href="/play" className="nav-link px-2 text-body-secondary noto">玩</a></li>
           </ul>
 
-          {/* <div className="col-md-3 text-end">
-            <button type="button" className="btn btn-outline-primary me-2">Login</button>
-            <button type="button" className="btn btn-primary">Sign-up</button>
-          </div> */}
+          <div className="col-md-3 text-end">
+            <button type="button" disabled={true} className="btn btn-outline-primary me-2">Login</button>
+            <button type="button" disabled={true} className="btn btn-primary">Sign-up</button>
+          </div>
         </header>
       </div>
 
-      <div className="px-4 py-5 my-5 text-center">
-        <img className="d-block mx-auto mb-4" src="bootstrap-logo.svg" alt="" width="72" height="57" />
-        <h1 className="display-5 fw-bold text-body-emphasis">Centered hero</h1>
+      <div className="px-4 text-center">
+        <div className="d-flex justify-content-center align-items-center mb-4">
+          <div className="text-center">
+            <img src="java-logo.svg" alt="Java Logo" width="288" height="228" />
+            <h2 className='noto mt-2 fw-bold'>Java</h2>
+          </div>
+          <FiX className="mx-2" size={64} />
+          <div className="text-center">
+            <img src="minecraft-logo.svg" alt="Minecraft Logo" width="288" height="228" />
+            <h2 className='noto mt-2 fw-bold'>Minecraft</h2>
+          </div>
+        </div>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world's most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+          <p className="lead mb-1 noto">不管你是否會玩 Minecraft，都能透過我們的教學來<mark className='warning'>輕鬆學習程式語言</mark>。</p>
+          <p className="lead mb-1 noto">透過<mark className='danger'>模組製作</mark>過程，你將掌握程式設計的基礎概念，並創造屬於自己的遊戲世界。</p>
+          <p className="lead mb-1 noto"><mark>不需要任何經驗</mark>，只要你想，我們的指導將帶領你一步步完成每一個挑戰。</p>
+          <p className="lead mb-4 noto">準備好開始了嗎？<mark className='warning'>點擊下面的按鈕</mark>，讓我們一起進入程式設計的世界吧！</p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Button type="button" className="btn btn-primary btn-lg px-4 gap-3" href="/get-start">Get Start</Button>
+            <Button type="button" className="btn btn-primary btn-lg px-4 gap-3 noto" href="/get-start">開始</Button>
           </div>
         </div>
       </div>
 
       <div className="container fixed-bottom">
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
-          <p className="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+          <p className="col-md-4 mb-0 text-body-secondary noto">&copy; 2025</p>
 
           <a href="/" className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg className="bi me-2" width="40" height="32"><use xlinkHref="#bootstrap" /></svg>
+            <img className='bi me-2' src="crepper.svg" alt="Crepper" width="40" height="32" />
           </a>
 
           <ul className="nav col-md-4 justify-content-end">
-            <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary">Home</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Github</a></li>
-            <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
-            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary">Play</a></li>
+            <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary noto">家</a></li>
+            <li className="nav-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">Github</a></li>
+            <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary noto">關於</a></li>
+            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary noto">玩</a></li>
           </ul>
         </footer>
       </div>

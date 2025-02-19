@@ -1,16 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './GetStart.css';
-import { useLayoutEffect } from 'react';
 import { useState, useEffect, useRef } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import '../../Root.css';
+import { setColorScheme } from '../../Root';
 
 function App() {
-  useLayoutEffect(() => {
-    const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    document.body.setAttribute('data-bs-theme', mode);
-    (document.querySelector(':root') as HTMLElement).style.colorScheme = mode;
-  }, []);
+  setColorScheme();
 
   const steps = [
     { video: "/videos/jdk/!jdk.mkv", subtitle: "請點<a href='https://learn.microsoft.com/en-us/java/openjdk/download' target='_blank'>這裡</a>下載" },
@@ -51,6 +47,8 @@ function App() {
     { video: "/videos/idea/13.mp4", subtitle: "等待兩個插件都安裝好，都出現<u>Restart IDE</u>時，請點擊其中一個<u>Restart IDE</u>" },
     { video: "/videos/idea/14.mkv", subtitle: "請點擊彈出視窗的<u>Restart</u>" },
     { video: "/videos/idea/15.mp4", subtitle: "重新打開後，請確保兩個插件都安裝完成" },
+    // { video: "/videos/1.mkv", subtitle: "" },
+    // { video: "/videos/2.mkv", subtitle: "" },
   ];
 
   const [stepIndex, setStepIndex] = useState(() => {

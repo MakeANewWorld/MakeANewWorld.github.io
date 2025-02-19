@@ -1,4 +1,4 @@
-# 安裝 JetBrains Runtime（DCEVM 用）、Fabric（開發環境）、JDK 21（含 OpenGL 庫）與 IntelliJ IDEA（免費版）
+# 你好
 
 本指南適用於完全沒有電腦基礎的使用者，並且專門針對 Windows 平台。
 

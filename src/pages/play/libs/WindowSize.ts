@@ -1,3 +1,5 @@
+import { isMobile } from "react-device-detect";
+
 export interface WindowSize {
     width: number;
     height: number;
@@ -27,7 +29,7 @@ export default class WindowSizeUtils {
     }
 
     public static showObj(): void {
-        if (window.location.href.includes('localhost:') || window.location.href.includes('127.0.0.1:')) { 
+        if (window.location.href.includes('localhost:') || window.location.href.includes('127.0.0.1:') || isMobile) { 
             WindowSizeUtils.setIsSplit(true);
             return; 
         }
