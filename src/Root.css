@@ -31,7 +31,7 @@
 }
 
 .noto {
-    font-family: "Noto Sans TC", serif;
+    font-family: "Noto Sans TC", serif !important;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -65,11 +65,11 @@ video {
 }
 
 .btn-disable-border {
-    border: none;
+    border: none !important;
 }
 
 .btn-disable-border:disabled {
-    border: none;
+    border: none !important;
 }
 
 .markdown-content {
@@ -79,7 +79,7 @@ video {
 .markdown-content p,
 .markdown-content li,
 .markdown-content blockquote {
-    font-family: "Noto Sans TC", serif;
+    font-family: "Noto Sans TC", serif !important;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -91,11 +91,11 @@ video {
 .markdown-content h4,
 .markdown-content h5,
 .markdown-content h6 {
-    font-family: "Noto Sans TC", serif;
+    font-family: "Noto Sans TC", serif !important;
 }
 
 .markdown-content code * {
-    font-family: "JetBrains Mono", serif;
+    font-family: "JetBrains Mono", serif !important;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
