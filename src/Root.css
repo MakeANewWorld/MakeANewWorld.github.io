@@ -19,15 +19,15 @@
 }
 
 .bg-inverse {
-    background-color: var(--bs-tertiary-bg);
+    background-color: var(--bs-tertiary-bg) !important;
 }
 
 .bg-inverse-hover:hover {
-    background-color: var(--bs-secondary-bg);
+    background-color: var(--bs-secondary-bg) !important;
 }
 
 .bg-inverse-click:first-child:active {
-    background-color: var(--bs-body-bg);
+    background-color: var(--bs-body-bg) !important;
 }
 
 .noto {
