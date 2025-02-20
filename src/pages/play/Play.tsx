@@ -20,17 +20,33 @@ function App() {
 
   const [markdownContent, setMarkdownContent] = useState<string>('');
   const [path, setPath] = useState<string>('');
-  const loadMarkdown = (path: string) => {
-    setPath(path);
+  const loadMarkdown = (path: string, reload?: boolean) => {
+    if (!reload) {
+      setPath(path);
+    }
     fetch(path)
-      .then((res) => res.text())
+      .then((res) => {
+        if (!res.ok || !res.headers.get("content-type")?.includes("text/markdown")) {
+          throw new Error("Invalid markdown file");
+        }
+        return res.text();
+      })
       .then((text) => {
-        setMarkdownContent(text);
-        setTitle(text.split('\n')[0].replace('/r', '').replace('#', ''));
-      });
+        setMarkdownContent(text.split("\n").slice(1).join("\n"));
+        setTitle(text.split('\n')[0].replace('\r', '').replace('#', ''));
+      })
+      .catch((err) => console.error("Markdown loading error:", err));
   };
+
   useEffect(() => {
-    loadMarkdown('/markdown/GetStart.md');
+    loadMarkdown('/markdown/learn-idea.md');
+    const interval = setInterval(() => {
+      if (path) {
+        loadMarkdown(path, true);
+      }
+    }, 500);
+
+    return () => clearInterval(interval);
   }, []);
 
   if (!isSplit) {

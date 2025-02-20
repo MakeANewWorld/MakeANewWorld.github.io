@@ -1,32 +1,8 @@
 [
     {
         "points": 20,
-        "name": "完成第一個任務",
-        "path": "/markdown/GetStart.md",
+        "name": "成功學習IDEA! 你的第一個任務!",
+        "path": "/markdown/learn-idea.md",
         "unlockPoints": 0
-    },
-    {
-        "points": 30,
-        "name": "閱讀一篇技術文章",
-        "path": "/markdown/1.md",
-        "unlockPoints": 0
-    },
-    {
-        "points": 30,
-        "name": "寫一段 JavaScript 程式碼",
-        "path": "/markdown/2.md",
-        "unlockPoints": 0
-    },
-    {
-        "points": 50,
-        "name": "解決算法題",
-        "path": "/markdown/3.md",
-        "unlockPoints": 30
-    },
-    {
-        "points": 300,
-        "name": "開發一個小專案",
-        "path": "/markdown/4.md",
-        "unlockPoints": 100
     }
 ]
