@@ -10,6 +10,7 @@ export default defineConfig({
         main: 'index.html',
         getStart: 'get-start.html',
         play: 'play.html',
+        about: 'about.html',
       },
       output: {
         manualChunks(id) {
