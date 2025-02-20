@@ -8,7 +8,7 @@ function App() {
   setColorScheme();
 
   const steps = [
-    { video: "/videos/jdk/!jdk.mkv", subtitle: "請點<a href='https://learn.microsoft.com/en-us/java/openjdk/download' target='_blank'>這裡</a>下載" },
+    { video: "/videos/jdk/!jdk.mkv", subtitle: "在實際進行遊玩之前，我們需要先照著影片設定一些東西，請點<a href='https://learn.microsoft.com/en-us/java/openjdk/download' target='_blank'>這裡</a>下載" },
     { video: "/videos/jdk/!open_instiller.mkv", subtitle: "請打開剛剛下載的檔案" },
     { video: "/videos/jdk/1.mkv", subtitle: "請點擊右下角的<u>Next</u>" },
     { video: "/videos/jdk/2.mkv", subtitle: "請詳細閱讀並接受使用者條款後於左下方方框打勾，並點擊右下角的<u>Next</u>" },
@@ -46,8 +46,21 @@ function App() {
     { video: "/videos/idea/13.mp4", subtitle: "等待兩個插件都安裝好，都出現<u>Restart IDE</u>時，請點擊其中一個<u>Restart IDE</u>" },
     { video: "/videos/idea/14.mkv", subtitle: "請點擊彈出視窗的<u>Restart</u>" },
     { video: "/videos/idea/15.mp4", subtitle: "重新打開後，請確保兩個插件都安裝完成" },
-    // { video: "/videos/1.mkv", subtitle: "" },
-    // { video: "/videos/2.mkv", subtitle: "" },
+    { video: "/videos/1.mkv", subtitle: "請點擊左側的<u>Projects</u>"},
+    { video: "/videos/2.mkv", subtitle: "請點擊螢幕中間的<u>Open</u>" },
+    { video: "/videos/3.mkv", subtitle: "若按此按鈕可以到桌面資料夾" },
+    { video: "/videos/4.mkv", subtitle: "請點選先前解壓縮好的資料夾" },
+    { video: "/videos/5.mkv", subtitle: "請點擊螢幕下方的<u>OK</u>" },
+    { video: "/videos/6.mkv", subtitle: "請點擊螢幕中間的<u>Trust Project</u>" },
+    { video: "/videos/7.mkv", subtitle: "請點擊螢幕右上方的<u>X</u>" },
+    { video: "/videos/8.mkv", subtitle: "請點擊螢幕上方的<u>X</u>" },
+    { video: "/videos/9.mkv", subtitle: "請點擊螢幕上方的<u>X</u>" },
+    { video: "/videos/10.mkv", subtitle: "請點擊螢幕下方的<u>Got it</u>" },
+    { video: "/videos/11.mkv", subtitle: "請點擊螢幕上方的<u>X</u>" },
+    { video: "/videos/12.mkv", subtitle: "請點擊螢幕下方的<u>Exclude folders</u>" },
+    { video: "/videos/13.mkv", subtitle: "請點擊螢幕中間的<u>是</u>" },
+    { video: "/videos/14.mkv", subtitle: "出現此畫面即安裝完成。" },
+    { video: "", subtitle: "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩"}
   ];
 
   const [stepIndex, setStepIndex] = useState(() => {

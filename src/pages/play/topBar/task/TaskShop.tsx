@@ -1,4 +1,4 @@
-import { Card, ListGroup, Button } from "react-bootstrap";
+import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Task, { User } from "../../libs/Task";
 import { None } from "./None";
 
@@ -11,11 +11,26 @@ export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = 
                     Task.getAllSelectivityTasks(task => !task.isUnlocked()).map(task => (
                         <ListGroup.Item key={task.getHashCode()} className="d-flex justify-content-between align-items-center noto">
                             {task.getTaskName()}
-                            <Button variant="outline-success" size="sm" disabled={!task.canUnlock(User.DEFAULT_USER)}
-                                onClick={() => task.unlockTask(User.DEFAULT_USER, forceUpdate)}
-                                className="noto">
-                                解鎖 (${task.getUnlockPoints()})
-                            </Button>
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                    !task.canUnlock(User.DEFAULT_USER) ? (
+                                        <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
+                                            餘額不足
+                                        </Tooltip>
+                                    ) : <></>
+                                }>
+                                <span>
+                                    <Button
+                                        variant="outline-success"
+                                        size="sm"
+                                        onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
+                                        className="noto ms-3"
+                                        disabled={!task.canUnlock(User.DEFAULT_USER)}>
+                                        解鎖 (${task.getUnlockPoints()})
+                                    </Button>
+                                </span>
+                            </OverlayTrigger>
                         </ListGroup.Item>
                     ))
                 ) : (<None />)}

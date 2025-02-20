@@ -6,7 +6,7 @@ import { TaskShop } from "./task/TaskShop";
 import { TaskList } from "./task/TaskList";
 import { Directory } from "./Directory";
 
-const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (path: string) => void}> = ({ title, setMarkdownContent, className }) => {
+const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (path: string) => void, path: string}> = ({ title, setMarkdownContent, className, path }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -41,9 +41,9 @@ const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (pa
             <div ref={menuRef}
                 className="position-fixed top-0 start-0 mt-5 ms-3 p-3 rounded bg-inverse shadow"
                 style={{ zIndex: 1040, display: menuOpen ? 'block' : 'none' }}>
-                <Directory setMarkdownContent={setMarkdownContent} />
-                <TaskList forceUpdate={forceUpdate} />
+                <TaskList forceUpdate={forceUpdate} path={path} />
                 <TaskShop forceUpdate={forceUpdate} />
+                <Directory setMarkdownContent={setMarkdownContent} />
             </div>
         </div>
     );

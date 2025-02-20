@@ -19,7 +19,9 @@ function App() {
   const [title, setTitle] = useState<string>('');
 
   const [markdownContent, setMarkdownContent] = useState<string>('');
+  const [path, setPath] = useState<string>('');
   const loadMarkdown = (path: string) => {
+    setPath(path);
     fetch(path)
       .then((res) => res.text())
       .then((text) => {
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <Container fluid className="p-0 position-relative min-vh-100">
-      <Top className="fixed-top d-flex flex-column align-items-center top-0 start-0 end-0 shadow-sm bg-body" title={title} setMarkdownContent={loadMarkdown}></Top>
+      <Top className="fixed-top d-flex flex-column align-items-center top-0 start-0 end-0 shadow-sm bg-body" path={path} title={title} setMarkdownContent={loadMarkdown}></Top>
       <MarkdownRenderer className="p-4 mt-5 markdown-content" markdownContent={markdownContent} />
     </Container >
   );

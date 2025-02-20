@@ -1,31 +1,44 @@
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Task, { User } from "../../libs/Task";
 import { None } from "./None";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = ({ forceUpdate }) => {
+export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path: string }> = ({ forceUpdate, path }) => {
     useEffect(() => {
-        fetch("/markdown/tasklist.json")
-            .then((res) => res.json())
-            .then((data) => {
-                data.forEach((taskInfo: { points: number; name: string; path: string; unlockPoints: number }) => {
-                    try {
-                        let find: boolean = false;
-                        for (let i = 0; i < Task.getAllTasks().length; i++) {
-                            if (Task.getAllTasks()[i].getTaskName() === taskInfo.name) {
-                                find = true;
-                                break;
-                            }
-                        }
-                        if (!find) {
+        User.loadUserFromLocalStorage();
+        if (!localStorage.getItem("tasks")) {
+            fetch("/markdown/tasklist.json")
+                .then((res) => res.json())
+                .then((data) => {
+                    const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
+                    data.forEach((taskInfo: { points: number; name: string; path: string; unlockPoints: number }) => {
+                        if (!existingTasks.has(taskInfo.name)) {
                             new Task(taskInfo.points, taskInfo.name, taskInfo.path, taskInfo.unlockPoints);
                         }
-                    } catch (error) {
-                        console.error("Task creation failed", error);
-                    }
-                });
-            })
-            .catch((err) => console.error("Error loading markdown.json:", err));
+                    });
+                })
+                .catch((err) => console.error("Error loading markdown.json:", err));
+        } else {
+            Task.loadTasksFromLocalStorage();
+        }
+    }, []);
+
+    const [isBottom, setIsBottom] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+
+            if (scrollPosition >= pageHeight - 10) {
+                setIsBottom(true);
+            } else {
+                setIsBottom(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
     return (
         <Card className="mb-2">
@@ -36,11 +49,33 @@ export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = 
                         <ListGroup.Item key={task.getHashCode()}
                             className="d-flex justify-content-between cur-point noto align-items-center">
                             {task.getTaskName()}
-                            <Button variant="outline-primary ms-3" size="sm"
-                                onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
-                                className="noto">
-                                ${task.getPoints()}
-                            </Button>
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                    task.getPath() !== path ? (
+                                        <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
+                                            目前不在此任務的頁面
+                                        </Tooltip>
+                                    ) :
+                                        !isBottom ?
+                                            (
+                                                <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
+                                                    目前尚未閱讀完成(於頁面最底部)
+                                                </Tooltip>
+                                            )
+                                            : <></>
+                                }>
+                                <span>
+                                    <Button
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
+                                        className="noto ms-3"
+                                        disabled={task.getPath() !== path || !isBottom}>
+                                        領取 ${task.getPoints()}
+                                    </Button>
+                                </span>
+                            </OverlayTrigger>
                         </ListGroup.Item>
                     ))
                 ) : (<None />)}
