@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import '../../Root.css';
 import { setColorScheme } from '../../Root';
+import { Video } from '../../weights/Video';
 
 function App() {
   setColorScheme();
@@ -71,17 +72,6 @@ function App() {
     localStorage.setItem("stepIndex", stepIndex.toString());
   }, [stepIndex]);
 
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const handleVideoEnd = () => {
-    setIsPlaying(false);
-    setTimeout(() => {
-      setIsPlaying(true);
-    }, 1000);
-  };
-
   const nextStep = () => {
     if (stepIndex < steps.length - 1) {
       setStepIndex(stepIndex + 1);
@@ -94,27 +84,10 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [isPlaying, stepIndex]);
-
   return (
     <div className="d-flex vh-100 flex-column align-items-center justify-content-center">
       {steps[stepIndex].video ? (
-        <video
-          ref={videoRef}
-          key={steps[stepIndex].video}
-          autoPlay={isPlaying}
-          onEnded={handleVideoEnd}
-          muted>
-          <source src={steps[stepIndex].video} type="video/mp4" />
-        </video>
+        <Video second={2} src={steps[stepIndex].video} keey={steps[stepIndex].video} ></Video>
       ) : (
         <FaCheckCircle size={100} className="mb-4 text-success" />
       )}

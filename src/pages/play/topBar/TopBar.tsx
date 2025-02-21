@@ -30,10 +30,10 @@ const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (pa
 
     return (
         <div className={className} style={{ zIndex: 1090 }}>
-            <Button className="position-fixed top-0 start-0 m-3 py-1 px-2 bg-inverse btn-disable-border bg-inverse-hover shadow bg-inverse-click"
+            <Button className="position-fixed top-0 start-0 m-3 py-1 px-2 bg-inverse btn-disable-border bg-inverse-hover shadow-sm bg-inverse-click"
                 ref={buttonRef}
                 onClick={() => setMenuOpen(!menuOpen)}>
-                <PiTarget size='1.3rem' className="hover-re-opt" />
+                <PiTarget size='1.3rem' className="hover-re-opt auto-style" />
             </Button>
             <PointRenderer />
             <h4 className="m-3 noto">{title}</h4>

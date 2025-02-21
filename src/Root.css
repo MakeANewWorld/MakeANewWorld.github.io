@@ -121,3 +121,7 @@ mark {
         border-bottom: 3px solid #ffb6c1 !important;
     }
 }
+
+.auto-style path {
+    fill: var(--bs-emphasis-color) !important;
+}

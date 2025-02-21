@@ -7,7 +7,7 @@ export interface WindowSize {
 
 export default class WindowSizeUtils {
     private static windowSize: WindowSize = { width: window.outerWidth, height: window.outerHeight };
-    private static readonly tolerance: number = 20;
+    public static readonly tolerance: number = 30;
     private static setIsSplitFunc: React.Dispatch<React.SetStateAction<boolean>> | null;
 
     public static getWidth(): number {
