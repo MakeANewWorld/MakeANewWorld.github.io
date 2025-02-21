@@ -2,11 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import '../../Root.css';
-import { setColorScheme } from '../../Root';
+import { preload } from '../../Root';
 import { Video } from '../../weights/Video';
 
 function App() {
-  setColorScheme();
+  preload();
 
   const steps = [
     { video: "/videos/jdk/!jdk.mkv", subtitle: "在實際進行遊玩之前，我們需要先照著影片設定一些東西，請點<a href='https://learn.microsoft.com/en-us/java/openjdk/download' target='_blank'>這裡</a>下載" },

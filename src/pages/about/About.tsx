@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../Root.css';
-import { setColorScheme } from '../../Root';
+import { preload } from '../../Root';
 
 function App() {
-  setColorScheme();
+  preload();
 
   return (
     <> </>

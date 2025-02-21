@@ -1,11 +1,11 @@
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import { setColorScheme } from '../Root';
+import { preload } from '../Root';
 import { FiX } from 'react-icons/fi';
 
 function App() {
-  setColorScheme();
+  preload();
   return (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" className="d-none">

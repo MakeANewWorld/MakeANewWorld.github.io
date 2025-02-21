@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Top from './topBar/TopBar';
 import MarkdownRenderer from './markdown/MarkdownRenderer';
 import WindowSizeUtils from './libs/WindowSize';
-import { setColorScheme } from '../../Root';
+import { addTask, preload } from '../../Root';
 import { Video } from '../../weights/Video';
 
 function App() {
-  setColorScheme();
+  preload();
 
   const [isSplit, setIsSplit] = useState(true);
   const [isTran, setIsTran] = useState(false);
@@ -54,10 +54,12 @@ function App() {
   }, []);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
-  setInterval(() => {
-    setHeight(WindowSizeUtils.getHeight());
-    setWidth(WindowSizeUtils.getWidth());
-  }, 100);
+  addTask({
+    runnable: () => {
+      setHeight(WindowSizeUtils.getHeight());
+      setWidth(WindowSizeUtils.getWidth());
+    }
+  });
 
   if (!isSplit) {
     return (
@@ -77,9 +79,7 @@ function App() {
       </Container>
     );
   }
-  setInterval(() => {
-    setIsTran(document.querySelector('html')?.classList.contains('translated-ltr') ? true : false);
-  }, 100);
+  addTask({ runnable: () => setIsTran(document.querySelector('html')?.classList.contains('translated-ltr') ? true : false) });
 
   return (
     <Container fluid className="p-0 position-relative min-vh-100">
