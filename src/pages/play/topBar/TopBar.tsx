@@ -36,7 +36,7 @@ const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (pa
                 <PiTarget size='1.3rem' className="hover-re-opt auto-style" />
             </Button>
             <PointRenderer />
-            <h4 className="m-3 noto">{title}</h4>
+            <h5 className="m-3 noto">{title}</h5>
 
             <div ref={menuRef}
                 className="position-fixed top-0 start-0 mt-5 ms-3 p-3 rounded bg-inverse shadow"
