@@ -32,7 +32,7 @@ public class ExampleMixin {
 
 然後切換回`ExampleMod`，在**最後一個括號之前**(之後我會簡稱**類的底部**)加上:  
 ```java
-public static float getHealth(PlayerEntity entity) {
+public static float getHealth(net.minecraft.entity.player.PlayerEntity entity) {
 	return 1;
 }
 ```
