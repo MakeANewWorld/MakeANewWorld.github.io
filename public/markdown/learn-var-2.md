@@ -72,7 +72,7 @@ return a + b;
 public static float getHealth(PlayerEntity entity) {
 	float headYaw = entity.getHeadYaw();
 	float health = 20.0F;
-    LOGGER.info("headYaw: {}", headYaw);
+  LOGGER.info("headYaw: {}", headYaw);
 	return health + headYaw;
 }
 ```
