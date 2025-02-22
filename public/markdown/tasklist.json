@@ -4,5 +4,11 @@
         "name": "成功學習IDEA! 你的第一個任務!",
         "path": "/markdown/learn-idea.md",
         "unlockPoints": 0
+    },
+    {
+        "points": 30,
+        "name": "如何玩Minecraft? Minecraft基本操作",
+        "path": "/markdown/learn-var.md",
+        "unlockPoints": 15
     }
 ]
