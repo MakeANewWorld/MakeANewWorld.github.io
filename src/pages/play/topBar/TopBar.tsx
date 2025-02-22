@@ -43,7 +43,7 @@ const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (pa
                 style={{ zIndex: 1040, display: menuOpen ? 'block' : 'none' }}>
                 <TaskList forceUpdate={forceUpdate} path={path} />
                 <TaskShop forceUpdate={forceUpdate} />
-                <Directory setMarkdownContent={setMarkdownContent} />
+                <Directory setMarkdownContent={setMarkdownContent} path={path} />
             </div>
         </div>
     );

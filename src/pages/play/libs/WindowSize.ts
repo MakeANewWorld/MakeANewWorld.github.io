@@ -34,7 +34,7 @@ export default class WindowSizeUtils {
             return; 
         }
         
-        const halfScreenWidth: number = window.screen.availWidth / 3;
+        const halfScreenWidth: number = window.screen.availWidth / 2;
         const screenHeight: number = window.screen.availHeight;
 
         if (Math.abs(WindowSizeUtils.getWidth() - halfScreenWidth) < WindowSizeUtils.tolerance) {

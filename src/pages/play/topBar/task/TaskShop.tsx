@@ -24,7 +24,7 @@ export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = 
                                     <Button
                                         variant="outline-success"
                                         size="sm"
-                                        onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
+                                        onClick={() => task.unlockTask(User.DEFAULT_USER, forceUpdate)}
                                         className="noto ms-3"
                                         disabled={!task.canUnlock(User.DEFAULT_USER)}>
                                         解鎖 (${task.getUnlockPoints()})

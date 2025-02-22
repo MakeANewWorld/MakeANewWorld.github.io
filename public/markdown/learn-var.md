@@ -1,3 +1,5 @@
+如何玩Minecraft? Minecraft基本操作
+
 首先，我們先把程式碼**恢復**成這樣  
 ![normal_code](images/learn-var/normal_code.png)
 
@@ -69,7 +71,7 @@ public static float getHealth(PlayerEntity entity) {
 ![game_rule](images/learn-var/game_rule.png)
 
 捲動到`生成`  
-![spawn](images/learn-var/spawn-1.png)
+![spawn](images/learn-var/spawn.png)
 
 全部關閉  
 ![close_spawn](images/learn-var/close_spawn.png)
@@ -114,8 +116,8 @@ public static float getHealth(PlayerEntity entity) {
 現在單按`W`鍵(之後會簡稱`前進`)是沒辦法出來的，我們要按住`W`，並且按下空白鍵(之後會簡稱`跳躍`)。  
 ![get_out](images/learn-var/get_out.png)
 
-現在對著地面隨便一處，按下`滑鼠右鍵`**放置方塊**。
+現在對著地面隨便一處，按下`滑鼠右鍵`**放置方塊**。  
 ![place_block](images/learn-var/place_block.png)
 
-同樣的，你今天學會了Minecraft的基本操作，並且使用了一點程式碼。
-記得滑到頁面最底部，領取積分喔!
+同樣的，你今天學會了`Minecraft`的**基本操作**，並且使用了一點程式碼。
+記得滑到頁面最底部，**領取積分**喔!

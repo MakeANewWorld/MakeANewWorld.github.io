@@ -64,7 +64,7 @@ function App() {
   if (!isSplit) {
     return (
       <Container className="text-center py-5 noto">
-        <p>請調整視窗大小，使得視窗寬度接近螢幕寬度的1/3 ({Math.round(window.screen.availWidth / 3)}px) (+-{WindowSizeUtils.tolerance})，以顯示完整內容。</p>
+        <p>請調整視窗大小，使得視窗寬度接近螢幕寬度的1/2 ({Math.round(window.screen.availWidth / 2)}px) (+-{WindowSizeUtils.tolerance})，以顯示完整內容。</p>
         <p>並請將視窗高度調整至占滿除工作列的螢幕高度 ({window.screen.availHeight}px) (+-{WindowSizeUtils.tolerance})。</p>
         <p>目前高度:{height}，目前寬度:{width}</p>
         <Video second={2} src={'/videos/import_window.mkv'}></Video>
