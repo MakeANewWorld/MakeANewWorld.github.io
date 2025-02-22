@@ -22,7 +22,11 @@
 
 接下來我們來做一個好玩的功能，把`20.0`的血量加上玩家頭旋轉$360.0^\circ\times n$圈(從名字看是這個)  
 改完要記得**重新載入**!  
-![float_method](images/learn-var-2/float_method.png)
+```java
+float headYaw = entity.getHeadYaw();
+float health = 20;
+return health + headYaw;
+```
 
 然後你就會發現往**右轉**會一直**增加**血量。  
 ![right_head](images/learn-var-2/right_head.png)
@@ -42,7 +46,7 @@ float health = 20;
 float health = 20.0F;
 ```
 `F`的作用是讓電腦知道這是`float類型`的資料，因為還有`double`類型的。  
-`double`類型，顧名思義就是`雙倍(double)`的小數位數，可以用來儲存比float多的資料。  
+`double`類型，顧名思義就是`double(雙倍)`的小數位數，可以用來儲存比float多的資料。  
 而如果你這樣寫:  
 ```java
 float health = 20.0;
