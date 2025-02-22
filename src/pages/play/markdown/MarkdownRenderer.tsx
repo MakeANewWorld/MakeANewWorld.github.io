@@ -2,6 +2,8 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import CopyIcon from "./copy/CopyIcon";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 type MarkdownRendererProps = {
     markdownContent: string,
@@ -29,7 +31,7 @@ function code({ node, inline, className, children, ...props }: any) {
 
 export default function MarkdownRenderer({ className, markdownContent }: MarkdownRendererProps) {
     return (
-        <Markdown components={{ code }} className={className}>
+        <Markdown components={{ code }} className={className} remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
             {markdownContent}
         </Markdown>
     );

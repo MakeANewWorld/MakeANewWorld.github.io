@@ -37,7 +37,7 @@ public static float getHealth(PlayerEntity entity) {
 }
 ```
 
-然後**啟動遊戲**(大象圖標 -> `fabric` -> `runClient`)  
+然後**啟動遊戲**(debug模式)  
 ![minecraft](images/learn-var/minecraft.png)
 
 點`Language`按鈕，往下捲動到底部  
@@ -116,8 +116,8 @@ public static float getHealth(PlayerEntity entity) {
 現在單按`W`鍵(之後會簡稱`前進`)是沒辦法出來的，我們要按住`W`，並且按下空白鍵(之後會簡稱`跳躍`)。  
 ![get_out](images/learn-var/get_out.png)
 
-現在對著地面隨便一處，按下`滑鼠右鍵`**放置方塊**。  
+現在對著地面任意一處，按下`滑鼠右鍵`**放置方塊**。  
 ![place_block](images/learn-var/place_block.png)
 
 同樣的，你今天學會了`Minecraft`的**基本操作**，並且使用了一點程式碼。
-記得滑到頁面最底部，**領取積分**喔!
+可以自己玩玩喔，死掉也沒關係，另外記得滑到頁面最底部，**領取積分**喔!

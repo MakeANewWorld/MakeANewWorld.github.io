@@ -10,5 +10,11 @@
         "name": "如何玩Minecraft? Minecraft基本操作",
         "path": "/markdown/learn-var.md",
         "unlockPoints": 15
+    },
+    {
+        "points": 60,
+        "name": "往右邊轉時血量會上升? 往左邊轉就死了? 玩家血量之基本數學",
+        "path": "/markdown/learn-var-2.md",
+        "unlockPoints": 25
     }
 ]

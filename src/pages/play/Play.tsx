@@ -43,14 +43,6 @@ function App() {
   useEffect(() => {
     loadMarkdown('/markdown/learn-idea.md');
 
-    if (window.location.href.includes('localhost:') || window.location.href.includes('127.0.0.1:')) {
-      const interval = setInterval(() => {
-        if (path) {
-          loadMarkdown(path, true);
-        }
-      }, 500);
-      return () => clearInterval(interval);
-    }
   }, []);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
