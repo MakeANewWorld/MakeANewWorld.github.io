@@ -82,12 +82,18 @@ public static float getHealth(PlayerEntity entity) {
 是$0^\circ$耶，讓我們把**頭轉一圈**?  
 ![360angle](images/learn-var-2/360angle.png)  
 是$360^\circ$耶，所以果然是$360.0^\circ\times n$圈耶!
-那讓我們把`headYaw`除以360.0F:  
+那讓我們把`headYaw`除以360.0F:
 ```java
 float turns = entity.getHeadYaw() / 360.0F;
 ```
-然後把20.0**乘以圈數**:  
+然後把20.0**乘以圈數**:
 ```java
+return health * turns;
+```
+最後會長這樣:
+```java
+float turns = entity.getHeadYaw() / 360.0F;
+float health = 20.0F;
 return health * turns;
 ```
 從上面就知道，電腦中的`加`就是`+`，`減`就是`-`。  
