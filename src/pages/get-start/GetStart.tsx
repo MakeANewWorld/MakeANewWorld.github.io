@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import '../../Root.css';
-import { preload } from '../../Root';
+import { getItem, preload, setItem } from '../../Root';
 import { Video } from '../../weights/Video';
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
     { video: "/videos/idea/13.mp4", subtitle: "等待兩個插件都安裝好，都出現<u>Restart IDE</u>時，請點擊其中一個<u>Restart IDE</u>" },
     { video: "/videos/idea/14.mkv", subtitle: "請點擊彈出視窗的<u>Restart</u>" },
     { video: "/videos/idea/15.mp4", subtitle: "重新打開後，請確保兩個插件都安裝完成" },
-    { video: "/videos/1.mkv", subtitle: "請點擊左側的<u>Projects</u>"},
+    { video: "/videos/1.mkv", subtitle: "請點擊左側的<u>Projects</u>" },
     { video: "/videos/2.mkv", subtitle: "請點擊螢幕中間的<u>Open</u>" },
     { video: "/videos/3.mkv", subtitle: "若按此按鈕可以到桌面資料夾" },
     { video: "/videos/4.mkv", subtitle: "請點選先前解壓縮好的資料夾" },
@@ -61,15 +61,21 @@ function App() {
     { video: "/videos/12.mkv", subtitle: "請點擊螢幕下方的<u>Exclude folders</u>" },
     { video: "/videos/13.mkv", subtitle: "請點擊螢幕中間的<u>是</u>" },
     { video: "/videos/14.mkv", subtitle: "出現此畫面即安裝完成。" },
-    { video: "", subtitle: "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩"}
+    { video: "", subtitle: "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩" }
   ];
 
-  const [stepIndex, setStepIndex] = useState(() => {
-    return parseInt(localStorage.getItem("stepIndex") || "0", 10);
-  });
+  const [stepIndex, setStepIndex] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("stepIndex", stepIndex.toString());
+    const fetchStepIndex = async () => {
+      const storedValue = await getItem("stepIndex");
+      setStepIndex(parseInt(storedValue || "0", 10));
+    };
+    fetchStepIndex();
+  }, []);
+
+  useEffect(() => {
+    setItem("stepIndex", stepIndex.toString());
   }, [stepIndex]);
 
   const nextStep = () => {

@@ -5,21 +5,21 @@ import { useEffect, useState } from "react";
 
 export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path: string }> = ({ forceUpdate, path }) => {
     useEffect(() => {
-        User.loadUserFromLocalStorage();
-        if (localStorage.getItem('tasks')) {
-            Task.loadTasksFromLocalStorage();
-        }
-        fetch("/markdown/tasklist.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
-                data.forEach((taskInfo: { points: number; name: string; path: string; unlockPoints: number }) => {
-                    if (!existingTasks.has(taskInfo.name)) {
-                        new Task(taskInfo.points, taskInfo.name, taskInfo.path, taskInfo.unlockPoints);
-                    }
-                });
-            })
-            .catch((err) => console.error("Error loading markdown.json:", err));
+        const a = async () => {
+            await Task.loadTasksFromLocalStorage();
+            fetch("/markdown/tasklist.json")
+                .then((res) => res.json())
+                .then((data) => {
+                    const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
+                    data.forEach((taskInfo: { points: number; name: string; path: string; unlockPoints: number }) => {
+                        if (!existingTasks.has(taskInfo.name)) {
+                            new Task(taskInfo.points, taskInfo.name, taskInfo.path, taskInfo.unlockPoints);
+                        }
+                    });
+                })
+                .catch((err) => console.error("Error loading markdown.json:", err));
+        };
+        a();
     }, []);
 
     const [isBottom, setIsBottom] = useState(false);

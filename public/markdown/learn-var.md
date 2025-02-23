@@ -22,10 +22,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ExampleMixin {
     @Inject(at = @At("HEAD"), method = "getHealth", cancellable = true)
     private void init(CallbackInfoReturnable<Float> cir) {
-		LivingEntity entity = (LivingEntity) (Object) this;
-		if (entity instanceof PlayerEntity player) {
-			cir.setReturnValue(ExampleMod.getHealth(player));
-		}
+				LivingEntity entity = (LivingEntity) (Object) this;
+				if (entity instanceof PlayerEntity player) {
+					cir.setReturnValue(ExampleMod.getHealth(player));
+				}
     }
 }
 ```

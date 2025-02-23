@@ -2,18 +2,25 @@ import { useEffect } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import Task from "../libs/Task";
 import { None } from "./task/None";
+import { getItem, setItem } from "../../../Root";
 
 export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, path: string }> = ({ setMarkdownContent, path }) => {
     useEffect(() => {
-        const lastViewed = localStorage.getItem("lastViewedMarkdown");
-        if (lastViewed) {
-            setMarkdownContent(lastViewed);
-        }
+        const a = async () => {
+            const lastViewed = await getItem("lastViewedMarkdown");
+            if (lastViewed) {
+                setMarkdownContent(lastViewed);
+            }
+        };
+        a();
     }, [setMarkdownContent]);
-    
-    if (localStorage.getItem("lastViewedMarkdown") === undefined) {
-        localStorage.setItem("lastViewedMarkdown", path);
-    }
+
+    const a = async () => {
+        if (await getItem("lastViewedMarkdown") === null) {
+            await setItem("lastViewedMarkdown", path);
+        }
+    };
+    a();
 
     return (
         <Card className="mb-2">
@@ -27,7 +34,8 @@ export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, p
                             onClick={() => {
                                 const path = task.getPath();
                                 setMarkdownContent(path);
-                                localStorage.setItem("lastViewedMarkdown", path);
+                                const a = async () => await setItem("lastViewedMarkdown", path);
+                                a();
                             }}>
                             {task.getTaskName()}
                         </ListGroup.Item>

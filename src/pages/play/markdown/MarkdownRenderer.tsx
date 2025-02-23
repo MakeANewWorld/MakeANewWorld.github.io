@@ -8,7 +8,8 @@ import remarkGfm from 'remark-gfm'
 
 type MarkdownRendererProps = {
     markdownContent: string,
-    className?: string
+    path: string,
+    className: string
 };
 
 function code({ node, inline, className, children, ...props }: any) {
@@ -31,6 +32,24 @@ function code({ node, inline, className, children, ...props }: any) {
 }
 
 export default function MarkdownRenderer({ className, markdownContent }: MarkdownRendererProps) {
+    // useEffect(() => {
+    //     const a = async () => {
+    //         const savedScroll = await getItem(`scroll-${path}`);
+    //         if (savedScroll) {
+    //             (document.querySelector(".mkd") as HTMLElement).scrollTop = parseInt(savedScroll, 10);
+    //         }
+    //     };
+    //     a();
+    // }, [path]);
+
+    // useEffect(() => {
+    //     const handleScroll = async () => {
+    //        await setItem(`scroll-${path}`, (document.querySelector(".mkd") as HTMLElement).scrollTop.toString());
+    //     };
+    //     (document.querySelector(".mkd") as HTMLElement).addEventListener("scroll", handleScroll);
+    //     return () => (document.querySelector(".mkd") as HTMLElement).removeEventListener("scroll", handleScroll);
+    // }, [path]);
+
     return (
         <Markdown components={{ code }} className={className} remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>
             {markdownContent}

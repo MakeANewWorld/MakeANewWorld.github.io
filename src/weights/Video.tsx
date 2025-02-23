@@ -19,6 +19,15 @@ export const Video: React.FC<{ second: number; src: string; keey?: string }> = (
         }
     }, [isPlaying]);
 
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.load();
+            videoRef.current.play().catch((error) => {
+                console.log("Autoplay error, ", error);
+            });
+        }
+    }, [src]);
+
     return (
         <video ref={videoRef} onEnded={handleVideoEnd} muted key={keey}>
             <source src={src} type="video/mp4" />

@@ -1,5 +1,6 @@
 @import url(/public/fonts/NotoSansTC.css);
 @import url(/public/fonts/JetBrainsMono.css);
+@import url(/public/fonts/Inter.css);
 
 .cur-point {
     cursor: pointer !important;
@@ -11,6 +12,10 @@
 
 .right-10px {
     right: 10px !important;
+}
+
+.w-65 {
+    width: 65% !important;
 }
 
 .hover-re-opt:hover {
@@ -125,3 +130,10 @@ mark {
 .auto-style path {
     fill: var(--bs-emphasis-color) !important;
 }
+
+.inter {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }

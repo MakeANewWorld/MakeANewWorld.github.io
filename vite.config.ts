@@ -11,6 +11,7 @@ export default defineConfig({
         getStart: 'get-start.html',
         play: 'play.html',
         about: 'about.html',
+        user: 'user.html',
       },
       output: {
         manualChunks(id) {

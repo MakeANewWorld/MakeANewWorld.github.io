@@ -1,10 +1,12 @@
 import { sha1 } from 'object-hash';
+import { getItem, setItem } from '../../../Root';
 
 export class User {
     private static readonly USERS: User[] = [];
     public static readonly DEFAULT_USER: User = new User();
 
     private points: number = 0;
+    private hook: (number: number) => void = (): void => {};
 
     constructor() {
         User.USERS.push(this);
@@ -14,16 +16,24 @@ export class User {
         return this.points;
     }
 
+    public setHook(hook: (number: number) => void) {
+        this.hook = hook;
+    }
+
+    public getHook(): (number: number) => void {
+        return this.hook;
+    }
+
     public addPoints(points: number): void {
         this.points += points;
     }
 
-    public static saveUserToLocalStorage(): void {
-        localStorage.setItem("userPoints", JSON.stringify(User.DEFAULT_USER.points));
+    public static async saveUserToLocalStorage(): Promise<void> {
+        await setItem("userPoints", JSON.stringify(User.DEFAULT_USER.points));
     }
 
-    public static loadUserFromLocalStorage(): void {
-        const storedPoints = localStorage.getItem("userPoints");
+    public static async loadUserFromLocalStorage(): Promise<void> {
+        let storedPoints = await getItem("userPoints");
         if (storedPoints) {
             User.DEFAULT_USER.points = JSON.parse(storedPoints);
         }
@@ -75,27 +85,29 @@ export default class Task {
         return user.getPoints() >= this.unlockPoints;
     }
 
-    public completeTask(user: User, forceUpdate: React.DispatchWithoutAction): void {
+    public async completeTask(user: User, forceUpdate: React.DispatchWithoutAction): Promise<void> {
         if (!this.unlocked) throw new Error("Task is locked");
         if (this.completed) throw new Error("Task is already completed");
 
         this.completed = true;
         user.addPoints(this.points);
+        user.getHook()(user.getPoints());
 
-        Task.saveTasksToLocalStorage();
-        User.saveUserToLocalStorage();
+        await Task.saveTasksToLocalStorage();
+        await User.saveUserToLocalStorage();
 
         forceUpdate();
     }
 
-    public unlockTask(user: User, forceUpdate: React.DispatchWithoutAction): void {
+    public async unlockTask(user: User, forceUpdate: React.DispatchWithoutAction): Promise<void> {
         if (!this.canUnlock(user)) throw new Error("Insufficient points");
 
         this.unlocked = true;
         user.addPoints(-this.unlockPoints);
+        user.getHook()(user.getPoints());
 
-        Task.saveTasksToLocalStorage();
-        User.saveUserToLocalStorage();
+        await Task.saveTasksToLocalStorage();
+        await User.saveUserToLocalStorage();
 
         forceUpdate();
     }
@@ -136,7 +148,7 @@ export default class Task {
         return this.hashCode;
     }
 
-    public static saveTasksToLocalStorage(): void {
+    public static async saveTasksToLocalStorage(): Promise<void> {
         const tasksData = this.TASK_LIST.map(task => ({
             points: task.points, 
             name: task.name,
@@ -146,11 +158,11 @@ export default class Task {
             unlocked: task.unlocked,
             hashCode: task.hashCode
         }));
-        localStorage.setItem("tasks", JSON.stringify(tasksData));
+        await setItem("tasks", JSON.stringify(tasksData));
     }
 
-    public static loadTasksFromLocalStorage(): void {
-        const tasksData = localStorage.getItem("tasks");
+    public static async loadTasksFromLocalStorage(): Promise<void> {
+        const tasksData = await getItem("tasks");
         if (tasksData) {
             try {
                 const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
