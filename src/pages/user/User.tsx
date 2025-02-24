@@ -24,12 +24,12 @@ function App() {
             if (isLogin) {
                 await signInWithEmail(email, password);
                 setOkMessage("✔️ 登入成功!");
-                setErrorMessage(null);
             } else {
                 await createUserWithEmail(email, password);
                 setOkMessage("✔️ 註冊且登入成功!");
-                setErrorMessage(null);
             }
+            setErrorMessage(null);
+            history.back();
         } catch (error: any) {
             setOkMessage(null);
             setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
