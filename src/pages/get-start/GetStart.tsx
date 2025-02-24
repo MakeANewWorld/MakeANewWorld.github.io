@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 import '../../Root.css';
-import { getItem, preload, setItem } from '../../Root';
+import { preload } from '../../Root';
 import { Video } from '../../weights/Video';
+import { getItem, setItem } from '../user/User';
 
 function App() {
   preload();

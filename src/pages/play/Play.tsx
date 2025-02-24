@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Top from './topBar/TopBar';
 import MarkdownRenderer from './markdown/MarkdownRenderer';
-import WindowSizeUtils from './libs/WindowSize';
+import WindowSizeUtils from '../../libs/WindowSize';
 import { addTask, preload } from '../../Root';
 import { Video } from '../../weights/Video';
 

@@ -1,5 +1,5 @@
 import { sha1 } from 'object-hash';
-import { getItem, setItem } from '../../../Root';
+import { getItem, setItem } from '../pages/user/User';
 
 export class User {
     private static readonly USERS: User[] = [];

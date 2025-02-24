@@ -4,37 +4,16 @@ import { Button } from 'react-bootstrap';
 import { preload } from '../Root';
 import { FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
+import { checkAndGetUser, findUser } from '../pages/user/User';
 
 function App() {
   preload();
   const [helloMessage, setHelloMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const checkAccess = async () => {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        return;
-      }
-
-      try {
-        const response = await fetch("http://ouo.freeserver.tw:24200/protected", {
-          method: 'GET',
-          headers: { "Authorization": `Bearer ${token}` }
-        });
-
-        if (!response.ok) {
-          return;
-        }
-
-        const data = await response.json();
-        setHelloMessage(data.msg);
-      } catch (err) {
-        console.error("Error during the fetch:", err);
-        return;
-      }
-    };
-    checkAccess();
+    if (!findUser()) return;
+    setHelloMessage("Hello, " + checkAndGetUser().email);
+    console.log(checkAndGetUser());
   }, []);
 
   return (

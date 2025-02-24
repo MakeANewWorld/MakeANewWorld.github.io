@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Card, ListGroup } from "react-bootstrap";
-import Task from "../libs/Task";
+import Task from "../../../libs/Task";
 import { None } from "./task/None";
-import { getItem, setItem } from "../../../Root";
+import { getItem, setItem } from "../../user/User";
 
 export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, path: string }> = ({ setMarkdownContent, path }) => {
     useEffect(() => {

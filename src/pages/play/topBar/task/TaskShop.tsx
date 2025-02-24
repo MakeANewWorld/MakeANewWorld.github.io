@@ -1,5 +1,5 @@
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import Task, { User } from "../../libs/Task";
+import Task, { User } from "../../../../libs/Task";
 import { None } from "./None";
 
 export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = ({ forceUpdate }) => {

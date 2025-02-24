@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { preload } from '../../Root';
+import { createUserWithEmail, signInWithEmail } from './User';
 
 function App() {
     preload();
     const [isLogin, setIsLogin] = useState(true);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [okMessage, setOkMessage] = useState<string | null>(null);
 
     const togglePassword = () => setPasswordVisible(!passwordVisible);
     const toggleForm = () => setIsLogin(!isLogin);
@@ -15,30 +17,22 @@ function App() {
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const username = (document.querySelector(".username") as HTMLInputElement).value;
+        const email = (document.querySelector(".username") as HTMLInputElement).value;
         const password = (document.querySelector(".password") as HTMLInputElement).value;
 
-        const url = isLogin ? "http://ouo.freeserver.tw:24200/login" : "http://ouo.freeserver.tw:24200/register";
-        const body = JSON.stringify({ username, password });
-
         try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: body,
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem("token", data.token);
-                history.back();
+            if (isLogin) {
+                await signInWithEmail(email, password);
+                setOkMessage("✔️ 登入成功!");
+                setErrorMessage(null);
             } else {
-                setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${data.msg}`);
+                await createUserWithEmail(email, password);
+                setOkMessage("✔️ 註冊且登入成功!");
+                setErrorMessage(null);
             }
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            setErrorMessage("⚠️ 連線錯誤，請稍後再試！");
+        } catch (error: any) {
+            setOkMessage(null);
+            setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
         }
     };
 
@@ -57,6 +51,11 @@ function App() {
                             {errorMessage && (
                                 <Alert variant="danger" onClose={() => setErrorMessage(null)} dismissible>
                                     {errorMessage}
+                                </Alert>
+                            )}
+                            {okMessage && (
+                                <Alert variant="success" onClose={() => setOkMessage(null)} dismissible>
+                                    {okMessage}
                                 </Alert>
                             )}
 
