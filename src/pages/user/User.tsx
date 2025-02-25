@@ -30,7 +30,6 @@ function App() {
             }
             setErrorMessage(null);
             location.href = '/';
-            location.reload();
         } catch (error: any) {
             setOkMessage(null);
             setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
