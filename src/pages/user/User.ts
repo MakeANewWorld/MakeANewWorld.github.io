@@ -20,6 +20,16 @@ export function init() {
             appId: "1:648635749151:web:41c2fc8293791d2bbe962a",
             measurementId: "G-86XJQ4HVXT"
         };
+        // const firebaseConfig = {
+        //     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+        //     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+        //     databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+        //     projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+        //     storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+        //     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+        //     appId: import.meta.env.VITE_FIREBASE_APP_ID,
+        //     measurementId: import.meta.env.VITE_MEASUREMENT_ID
+        // };
 
         app = initializeApp(firebaseConfig);
         auth = getAuth(app); false
