@@ -29,7 +29,7 @@ function App() {
                 setOkMessage("✔️ 註冊且登入成功!");
             }
             setErrorMessage(null);
-            history.back();
+            location.href = '/';
             location.reload();
         } catch (error: any) {
             setOkMessage(null);
