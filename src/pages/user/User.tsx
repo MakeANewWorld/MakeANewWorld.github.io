@@ -32,8 +32,13 @@ function App() {
             setErrorMessage(null);
             if (history.length > 1) {
                 history.back();
-                // Reload current page
-                history.go();
+                const currentLocation = location.href;
+                const int = setInterval(() => {
+                    if (currentLocation !== location.href) {
+                        location.reload();
+                        clearInterval(int);
+                    }
+                }, 100);
             } else {
                 location.href = "/";
             }            
