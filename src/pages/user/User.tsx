@@ -30,10 +30,12 @@ function App() {
                 setOkMessage("✔️ 註冊且登入成功!");
             }
             setErrorMessage(null);
-            if (window.history.length > 1) {
-                window.history.back();
+            if (history.length > 1) {
+                history.back();
+                // Reload current page
+                history.go();
             } else {
-                window.location.href = "/";
+                location.href = "/";
             }            
         } catch (error: any) {
             setOkMessage(null);
