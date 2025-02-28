@@ -5,15 +5,17 @@ import { preload } from '../Root';
 import { FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { checkAndGetUser, findUser } from '../pages/user/User';
+import { isNullish } from 'utility-types';
 
 function App() {
   preload();
   const [helloMessage, setHelloMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!findUser()) return;
-    setHelloMessage("Hello, " + checkAndGetUser().email);
-    console.log(checkAndGetUser());
+    setInterval(() => {
+      if (!findUser() || isNullish(helloMessage)) return;
+      setHelloMessage("Hello, " + checkAndGetUser().email);
+    }, 100);
   }, []);
 
   return (

@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { preload } from '../../Root';
 import { createUserWithEmail, signInWithEmail } from './User';
 import React from 'react';
+import { PasswordInput } from './form/PasswordInput';
+import { MailInput } from './form/MailInput';
+import { ConfirmPassword } from './form/ConfirmPassword';
 
 function App() {
     preload();
@@ -30,18 +33,11 @@ function App() {
                 setOkMessage("✔️ 註冊且登入成功!");
             }
             setErrorMessage(null);
-            if (history.length > 1) {
+            if (history.length > 0) {
                 history.back();
-                const currentLocation = location.href;
-                const int = setInterval(() => {
-                    if (currentLocation !== location.href) {
-                        location.reload();
-                        clearInterval(int);
-                    }
-                }, 100);
             } else {
                 location.href = "/";
-            }            
+            }
         } catch (error: any) {
             setOkMessage(null);
             setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
@@ -59,7 +55,6 @@ function App() {
                                 <img className='bi' src="crepper.svg" alt="Crepper" width="160" height="128" />
                             </div>
 
-                            {/* 🚀 Bootstrap Alert 顯示錯誤訊息 */}
                             {errorMessage && (
                                 <Alert variant="danger" onClose={() => setErrorMessage(null)} dismissible>
                                     {errorMessage}
@@ -72,50 +67,15 @@ function App() {
                             )}
 
                             <Form onSubmit={handleFormSubmit}>
-                                <Form.Group controlId="formBasicEmail" className="mb-3">
-                                    <Form.Control
-                                        type="email"
-                                        placeholder="輸入電子郵件"
-                                        required
-                                        className="form-control-lg noto username"
-                                        autoComplete="username"
-                                        aria-label="電子郵件"
-                                    />
-                                </Form.Group>
-
-                                <Form.Group controlId="formBasicPassword" className="mb-3">
-                                    <InputGroup>
-                                        <FormControl
-                                            type={passwordVisible ? 'text' : 'password'}
-                                            placeholder="輸入密碼"
-                                            required
-                                            className="form-control-lg noto password"
-                                            autoComplete={isLogin ? 'current-password' : 'new-password'}
-                                            aria-label="密碼"
-                                        />
-                                        <InputGroup.Text className='cur-point noto' onClick={togglePassword}>
-                                            {passwordVisible ? '隱藏' : '顯示'}
-                                        </InputGroup.Text>
-                                    </InputGroup>
-                                </Form.Group>
+                                <MailInput/>
+                                <PasswordInput passwordVisible={passwordVisible} isLogin={isLogin} togglePassword={togglePassword}/>
 
                                 {isLogin ? (
-                                    <Button variant="primary" type="submit" className="w-100 noto">
-                                        登入
-                                    </Button>
+                                    <Button variant="primary" type="submit" className="w-100 noto">登入</Button>
                                 ) : (
                                     <>
-                                        <Form.Group controlId="formBasicConfirmPassword" className="mb-3">
-                                            <Form.Control
-                                                placeholder="確認密碼"
-                                                required
-                                                className="form-control-lg noto"
-                                                aria-label="確認密碼"
-                                            />
-                                        </Form.Group>
-                                        <Button variant="success" type="submit" className="w-100 noto">
-                                            註冊
-                                        </Button>
+                                        <ConfirmPassword/>
+                                        <Button variant="success" type="submit" className="w-100 noto">註冊</Button>
                                     </>
                                 )}
                             </Form>
