@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl, Alert
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { preload } from '../../Root';
 import { createUserWithEmail, signInWithEmail } from './User';
+import React from 'react';
 
 function App() {
     preload();
@@ -29,7 +30,11 @@ function App() {
                 setOkMessage("✔️ 註冊且登入成功!");
             }
             setErrorMessage(null);
-            location.href = '/';
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "/";
+            }            
         } catch (error: any) {
             setOkMessage(null);
             setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
