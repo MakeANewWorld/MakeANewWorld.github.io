@@ -37,13 +37,6 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Test if secrets are empty
-        run: |
-          if [ -z "${{ secrets.FIREBASE_API_KEY }}" ]; then
-            echo "Secret is EMPTY!"
-          else
-            echo "Secret is SET!"
-          fi
       - name: Build
         env:
             VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
