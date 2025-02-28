@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     setInterval(() => {
-      if (!findUser() || isNullish(helloMessage)) return;
+      if (!findUser() || !isNullish(helloMessage)) return;
       setHelloMessage("Hello, " + checkAndGetUser().email);
     }, 100);
   }, []);
