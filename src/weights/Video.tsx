@@ -13,18 +13,14 @@ export const Video: React.FC<{ second: number; src: string; keey?: string }> = (
 
     useEffect(() => {
         if (isPlaying && videoRef.current) {
-            videoRef.current.play().catch((error) => {
-                console.log("Autoplay error, ", error);
-            });
+            videoRef.current.play().catch(e => console.debug(e));
         }
     }, [isPlaying]);
 
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.load();
-            videoRef.current.play().catch((error) => {
-                console.log("Autoplay error, ", error);
-            });
+            videoRef.current.play().catch(e => console.debug(e));
         }
     }, [src]);
 
