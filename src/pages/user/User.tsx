@@ -1,52 +1,21 @@
 import { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { preload } from '../../Root';
-import { createUserWithEmail, signInWithEmail } from './User';
-import React from 'react';
-import { PasswordInput } from './form/PasswordInput';
-import { MailInput } from './form/MailInput';
-import { ConfirmPassword } from './form/ConfirmPassword';
-import { FirebaseError } from 'firebase/app';
-import { getErrorTranslate } from './ErrorHadler';
+import { signInWithGoogle } from './User';
+import { FcGoogle } from "react-icons/fc";
 
 function App() {
     preload();
-    const [isLogin, setIsLogin] = useState(true);
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [okMessage, setOkMessage] = useState<string | null>(null);
 
-    const togglePassword = () => setPasswordVisible(!passwordVisible);
-    const toggleForm = () => setIsLogin(!isLogin);
-
-    const handleFormSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        const email = (document.querySelector(".username") as HTMLInputElement).value;
-        const password = (document.querySelector(".password") as HTMLInputElement).value;
-
-        try {
-            if (isLogin) {
-                await signInWithEmail(email, password);
-                setOkMessage("✔️ 登入成功!");
-            } else {
-                await createUserWithEmail(email, password);
-                setOkMessage("✔️ 註冊且登入成功!");
-            }
-            setErrorMessage(null);
-            if (history.length > 0) {
-                history.back();
-            } else {
-                location.href = "/";
-            }
-        } catch (error: any) {
-            setOkMessage(null);
-            if (error instanceof FirebaseError) {
-                setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${getErrorTranslate(error)}`);
-            } else {
-                setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
-            }
+    const googleLogin = async () => {
+        await signInWithGoogle();
+        setOkMessage("✔️ 登入成功!");
+        if (history.length > 0) {
+            history.back();
+        } else {
+            location.href = "/";
         }
     };
 
@@ -61,35 +30,19 @@ function App() {
                                 <img className='bi' src="crepper.svg" alt="Crepper" width="160" height="128" />
                             </div>
 
-                            {errorMessage && (
-                                <Alert variant="danger" onClose={() => setErrorMessage(null)} dismissible>
-                                    {errorMessage}
-                                </Alert>
-                            )}
                             {okMessage && (
                                 <Alert variant="success" onClose={() => setOkMessage(null)} dismissible>
                                     {okMessage}
                                 </Alert>
                             )}
 
-                            <Form onSubmit={handleFormSubmit}>
-                                <MailInput />
-                                <PasswordInput passwordVisible={passwordVisible} isLogin={isLogin} togglePassword={togglePassword} />
-
-                                {isLogin ? (
-                                    <Button variant="primary" type="submit" className="w-100 noto">登入</Button>
-                                ) : (
-                                    <>
-                                        <ConfirmPassword />
-                                        <Button variant="success" type="submit" className="w-100 noto">註冊</Button>
-                                    </>
-                                )}
-                            </Form>
-
-                            <div className="text-center mt-3 noto">
-                                <span>{isLogin ? '還沒有帳號? ' : '已經有帳號? '}</span>
-                                <span onClick={toggleForm} className='cur-point fw-bold'>{isLogin ? '註冊' : '登入'}</span>
-                            </div>
+                            <Button
+                                className="noto d-flex align-items-center justify-content-center rounded-3 body-color btn-outline-secondary btn bg-inverse-hover shadow-large w-100 h-100"
+                                onClick={googleLogin}
+                            >
+                                <FcGoogle size={24} className="me-2" />
+                                <span className="h6 m-0">使用 Google 帳戶繼續</span>
+                            </Button>
                         </Card.Body>
                     </Card>
                 </Col>

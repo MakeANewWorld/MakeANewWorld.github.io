@@ -1,7 +1,7 @@
 import { Form, FormControl, InputGroup } from "react-bootstrap";
 
-export const PasswordInput: React.FC<{ passwordVisible: boolean, isLogin: boolean, togglePassword: () => void }> =
-    ({ passwordVisible, isLogin, togglePassword }) => {
+export const PasswordInput: React.FC<{ passwordVisible: boolean, togglePassword: () => void }> =
+    ({ passwordVisible, togglePassword }) => {
         return (
             <Form.Group controlId="formBasicPassword" className="mb-3">
                 <InputGroup>
@@ -10,7 +10,7 @@ export const PasswordInput: React.FC<{ passwordVisible: boolean, isLogin: boolea
                         placeholder="輸入密碼"
                         required
                         className="form-control-lg noto password"
-                        autoComplete={isLogin ? 'current-password' : 'new-password'}
+                        autoComplete={'current-password'}
                         aria-label="密碼"
                     />
                     <InputGroup.Text className='cur-point noto' onClick={togglePassword}>

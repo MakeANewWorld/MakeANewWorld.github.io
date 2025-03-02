@@ -1,5 +1,5 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, User } from "firebase/auth";
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
 import { Database, get, getDatabase, ref, set } from "firebase/database";
 
 export let app: FirebaseApp | null = null;
@@ -22,7 +22,7 @@ export function init() {
         };
 
         app = initializeApp(firebaseConfig);
-        auth = getAuth(app); false
+        auth = getAuth(app);
         database = getDatabase(app);
 
         auth.onAuthStateChanged(user => {
@@ -50,6 +50,12 @@ function checkState() {
     if (database === null) throw new Error("database not initialized");
 }
 
+export async function signInWithGoogle() {
+    checkState();
+    currentUser = (await signInWithPopup(auth as Auth, new GoogleAuthProvider())).user;
+    localStorage.setItem("firebaseUser", JSON.stringify(currentUser));
+}
+
 export async function signInWithEmail(email: string, password: string) {
     checkState();
     currentUser = (await signInWithEmailAndPassword((auth as Auth), email, password)).user;
@@ -75,7 +81,7 @@ export function findUser(): boolean {
 export async function getItem(key: string): Promise<any> {
     const uid = checkAndGetUser().uid;
     const itemRef = ref((database as Database), `users/${uid}/items/${key}`);
-    
+
     try {
         const snapshot = await get(itemRef);
         if (snapshot.exists()) {
@@ -92,7 +98,7 @@ export async function getItem(key: string): Promise<any> {
 export async function setItem(key: string, value: string): Promise<void> {
     const uid = checkAndGetUser().uid;
     const itemRef = ref((database as Database), `users/${uid}/items/${key}`);
-    
+
     try {
         await set(itemRef, { value });
     } catch (err) {

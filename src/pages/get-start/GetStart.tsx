@@ -53,7 +53,7 @@ function App() {
     if (stepIndex < steps.length - 1) {
       setStepIndex(stepIndex + 1);
       changeBar(stepIndex + 1);
-      setItem("stepIndex", stepIndex.toString());
+      setItem("stepIndex", (stepIndex + 1).toString());
     }
   };
 
@@ -61,7 +61,7 @@ function App() {
     if (stepIndex > 0) {
       setStepIndex(stepIndex - 1);
       changeBar(stepIndex - 1);
-      setItem("stepIndex", stepIndex.toString());
+      setItem("stepIndex", (stepIndex - 1).toString());
     }
   };
 

@@ -131,6 +131,16 @@ mark {
     fill: var(--bs-emphasis-color) !important;
 }
 
+.body-color {
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-emphasis-color) !important;
+}
+
+.body-color:hover {
+    background-color: var(--bs-tertiary-bg) !important;
+    color: var(--bs-emphasis-color) !important;
+}
+
 .inter {
     font-family: "Inter", serif;
     font-optical-sizing: auto;
