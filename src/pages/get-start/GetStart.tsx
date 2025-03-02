@@ -25,7 +25,7 @@ function App() {
     { video: "/videos/rerun.mkv", subtitle: "請點擊🔄" },
     { video: "/videos/install_process.mp4", subtitle: "安裝完整過程(10倍速)，依據網路速度可能有差異。" },
     { video: "/videos/finish.mkv", subtitle: "若出現此畫面(請務必檢查<b>右下角藍色長條跑完</b>)代表安裝成功，請點選右上角的☐放大視窗。" },
-    { video: "/videos/end.mkv", subtitle: "請點選✖以關閉腳本。" },
+    { video: "/videos/end.mkv", subtitle: "請切換到腳本視窗並點選✖以關閉腳本。" },
     { video: "", subtitle: "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩" }
   ];
 
