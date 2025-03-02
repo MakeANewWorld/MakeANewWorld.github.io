@@ -20,6 +20,7 @@ function App() {
     { video: "/videos/close_pop.mkv", subtitle: "請按照影片關閉提示。" },
     { video: "/videos/close_pop_2.mkv", subtitle: "請按照影片關閉提示。" },
     { video: "/videos/gradle_setting.mkv", subtitle: "請按照影片操作。" },
+    { video: "/videos/gradle_setting_ing.mkv", subtitle: "請按照影片操作。" },
     { video: "/videos/skip_ok.mkv", subtitle: "請依序點擊<u>Skip</u>、<u>OK</u>" },
     { video: "/videos/rerun.mkv", subtitle: "請點擊🔄" },
     { video: "/videos/install_process.mp4", subtitle: "安裝完整過程(10倍速)，依據網路速度可能有差異。" },
@@ -28,19 +29,22 @@ function App() {
     { video: "", subtitle: "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩" }
   ];
 
+  const changeBar = (index: number) => {
+    if (index === 0) {
+      document.getElementById("b-br")?.classList.remove("fixed-bottom");
+      document.getElementById("b-br")?.classList.add("fixed-top");
+    } else {
+      document.getElementById("b-br")?.classList.add("fixed-bottom");
+      document.getElementById("b-br")?.classList.remove("fixed-top");
+    }
+  };
   const [stepIndex, setStepIndex] = useState(0);
 
   useEffect(() => {
     const fetchStepIndex = async () => {
       const storedValue = await getItem("stepIndex");
       setStepIndex(parseInt(storedValue || "0", 10));
-      if (parseInt(storedValue || "0", 10) === 0) {
-        document.getElementById("b-br")?.classList.remove("fixed-bottom");
-        document.getElementById("b-br")?.classList.add("fixed-top");
-      } else {
-        document.getElementById("b-br")?.classList.add("fixed-bottom");
-        document.getElementById("b-br")?.classList.remove("fixed-top");
-      }
+      changeBar(parseInt(storedValue || "0", 10));
     };
     fetchStepIndex();
   }, []);
@@ -48,27 +52,15 @@ function App() {
   const nextStep = () => {
     if (stepIndex < steps.length - 1) {
       setStepIndex(stepIndex + 1);
+      changeBar(stepIndex + 1);
       setItem("stepIndex", stepIndex.toString());
-      if ((stepIndex +1 ) === 0) {
-        document.getElementById("b-br")?.classList.remove("fixed-bottom");
-        document.getElementById("b-br")?.classList.add("fixed-top");
-      } else {
-        document.getElementById("b-br")?.classList.add("fixed-bottom");
-        document.getElementById("b-br")?.classList.remove("fixed-top");
-      }
     }
   };
 
   const prevStep = () => {
     if (stepIndex > 0) {
-      if ((stepIndex - 1) === 0) {
-        document.getElementById("b-br")?.classList.remove("fixed-bottom");
-        document.getElementById("b-br")?.classList.add("fixed-top");
-      } else {
-        document.getElementById("b-br")?.classList.add("fixed-bottom");
-        document.getElementById("b-br")?.classList.remove("fixed-top");
-      }
       setStepIndex(stepIndex - 1);
+      changeBar(stepIndex - 1);
       setItem("stepIndex", stepIndex.toString());
     }
   };
