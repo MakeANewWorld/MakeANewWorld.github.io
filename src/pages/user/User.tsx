@@ -7,6 +7,8 @@ import React from 'react';
 import { PasswordInput } from './form/PasswordInput';
 import { MailInput } from './form/MailInput';
 import { ConfirmPassword } from './form/ConfirmPassword';
+import { FirebaseError } from 'firebase/app';
+import { getErrorTranslate } from './ErrorHadler';
 
 function App() {
     preload();
@@ -40,7 +42,11 @@ function App() {
             }
         } catch (error: any) {
             setOkMessage(null);
-            setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
+            if (error instanceof FirebaseError) {
+                setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${getErrorTranslate(error)}`);
+            } else {
+                setErrorMessage(`❌ ${isLogin ? "登入" : "註冊"}失敗: ${error.message}`);
+            }
         }
     };
 
@@ -67,14 +73,14 @@ function App() {
                             )}
 
                             <Form onSubmit={handleFormSubmit}>
-                                <MailInput/>
-                                <PasswordInput passwordVisible={passwordVisible} isLogin={isLogin} togglePassword={togglePassword}/>
+                                <MailInput />
+                                <PasswordInput passwordVisible={passwordVisible} isLogin={isLogin} togglePassword={togglePassword} />
 
                                 {isLogin ? (
                                     <Button variant="primary" type="submit" className="w-100 noto">登入</Button>
                                 ) : (
                                     <>
-                                        <ConfirmPassword/>
+                                        <ConfirmPassword />
                                         <Button variant="success" type="submit" className="w-100 noto">註冊</Button>
                                     </>
                                 )}

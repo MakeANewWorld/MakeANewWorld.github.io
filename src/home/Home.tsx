@@ -6,15 +6,18 @@ import { FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { checkAndGetUser, findUser } from '../pages/user/User';
 import { isNullish } from 'utility-types';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   preload();
   const [helloMessage, setHelloMessage] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setInterval(() => {
       if (!findUser() || !isNullish(helloMessage)) return;
-      setHelloMessage("Hello, " + checkAndGetUser().email);
+      const email: string = !isNullish(checkAndGetUser().email) ? (checkAndGetUser().email as string) : '';
+      setHelloMessage(t('greeting') + email);
     }, 100);
   }, []);
 
