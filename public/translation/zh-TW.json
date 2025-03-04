@@ -1,5 +1,50 @@
 {
-    "greeting": "歡迎, ",
-    "auth": {
-    }
+    "greeting": "歡迎",
+
+    "greeting-prompt": "歡迎, ",
+    "home": "家",
+    "github": "Github",
+    "about": "關於",
+    "play": "玩",
+    "login": "登入",
+    "register": "註冊",
+    "start": "開始",
+
+    "learn-programming": "不管你是否會玩 Minecraft，都能透過我們的教學來<mark class='warning'>輕鬆學習程式語言</mark>。",
+    "mod-creation": "透過<mark class='danger'>模組製作</mark>過程，你將掌握程式設計的基礎概念，並創造屬於自己的遊戲世界。",
+    "no-experience-needed": "<mark>不需要任何經驗</mark>，只要你想，我們的指導將帶領你一步步完成每一個挑戰。",
+    "ready-to-start": "準備好開始了嗎？<mark class='warning'>點擊下面的按鈕</mark>，讓我們一起進入程式設計的世界吧！",
+
+    "login-success": "登入成功!",
+    "register-login-success": "註冊且登入成功!",
+    "failure": "失敗",
+    "continue-with-google": "使用 Google 帳戶繼續",
+    "no-account": "還沒有帳號?",
+    "have-account": "已經有帳號?",
+    
+    "input-password": "輸入密碼",
+    "password": "密碼",
+    "hidden-password": "隱藏",
+    "show-password": "顯示",
+    "confirm-password": "驗證密碼",
+    "input-email": "輸入電子郵件",
+    "email": "電子郵件",
+
+    "nothing-here": "這裡沒有東西了，去別的地方看看吧~",
+    
+    "claim": "領取",
+    "not-finished-reading": "目前尚未閱讀完成 (於頁面最底部)",
+    "not-on-task-page": "目前不在此任務的頁面",
+    "task": "任務",
+
+    "task-store": "任務商店",
+    "insufficient-balance": "餘額不足",
+    "unlock": "解鎖",
+
+    "directory": "目錄",
+
+    "adjust-window-size": "請調整視窗大小，使得視窗寬度接近螢幕寬度的1/2，以顯示完整內容。",
+    "adjust-window-height": "並請將視窗高度調整至占滿除工作列的螢幕高度。",
+    "current-height": "目前高度",
+    "current-width": "目前寬度"
 }

@@ -2,6 +2,7 @@ import { Button, Card, ListGroup, OverlayTrigger, Tooltip } from "react-bootstra
 import Task, { User } from "../../../../libs/Task";
 import { None } from "./None";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path: string }> = ({ forceUpdate, path }) => {
     useEffect(() => {
@@ -39,9 +40,12 @@ export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const { t } = useTranslation();
+
     return (
         <Card className="mb-2">
-            <Card.Header className="noto">📋 任務</Card.Header>
+            <Card.Header className="noto">📋 {t("task")}</Card.Header>
             <ListGroup variant="flush">
                 {Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).length > 0 ? (
                     Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).map(task => (
@@ -53,13 +57,13 @@ export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path
                                 overlay={
                                     task.getPath() !== path ? (
                                         <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
-                                            目前不在此任務的頁面
+                                            {t("not-on-task-page")}
                                         </Tooltip>
                                     ) :
                                         !isBottom ?
                                             (
                                                 <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
-                                                    目前尚未閱讀完成(於頁面最底部)
+                                                    {t("not-finished-reading")}
                                                 </Tooltip>
                                             )
                                             : <></>
@@ -71,7 +75,7 @@ export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path
                                         onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
                                         className="noto ms-3"
                                         disabled={task.getPath() !== path || !isBottom}>
-                                        領取 ${task.getPoints()}
+                                        {t("claim")} ${task.getPoints()}
                                     </Button>
                                 </span>
                             </OverlayTrigger>

@@ -1,3 +1,50 @@
 {
-    "greeting": "Welcome, "
+    "greeting": "Welcome",
+
+    "greeting-prompt": "Welcome, ",
+    "home": "Home",
+    "github": "Github",
+    "about": "About",
+    "play": "Play",
+    "login": "Login",
+    "register": "Register",
+    "start": "Start",
+
+    "learn-programming": "No matter if you play Minecraft or not, you can <mark class='warning'>easily learn programming</mark> through our tutorials.",
+    "mod-creation": "Through the <mark class='danger'>mod creation</mark> process, you will grasp fundamental programming concepts and create your own game world.",
+    "no-experience-needed": "<mark>No prior experience required</mark>. As long as you're willing, our guidance will lead you step by step through every challenge.",
+    "ready-to-start": "Ready to begin? <mark class='warning'>Click the button below</mark> and let's dive into the world of programming together!",
+
+    "login-success": "Login successful!",
+    "register-login-success": "Registered and logged in successfully!",
+    "failure": "failed",
+    "continue-with-google": "Continue with Google",
+    "no-account": "Don't have an account?",
+    "have-account": "Already have an account?",
+
+    "input-password": "Enter your password",
+    "password": "Password",
+    "hidden-password": "Hidden",
+    "show-password": "Show",
+    "confirm-password": "Confirm Password",
+    "input-email": "Enter your email",
+    "email": "Email",
+
+    "nothing-here": "There's nothing here, try looking elsewhere~",
+
+    "claim": "Claim",
+    "not-finished-reading": "Not finished reading yet (at the bottom of the page)",
+    "not-on-task-page": "Currently not on this task's page",
+    "task": "Task",
+
+    "task-store": "Task Store",
+    "insufficient-balance": "Insufficient balance",
+    "unlock": "Unlock",
+
+    "directory": "Directory",
+
+    "adjust-window-size": "Please adjust the window size to make the width about half of the screen width to display the full content.",
+    "adjust-window-height": "Also, please adjust the window height to fill the screen height, excluding the taskbar.",
+    "current-height": "Current height",
+    "current-width": "Current width"
 }

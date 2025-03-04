@@ -3,6 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import Task from "../../../libs/Task";
 import { None } from "./task/None";
 import { getItem, setItem } from "../../user/User";
+import { useTranslation } from "react-i18next";
 
 export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, path: string }> = ({ setMarkdownContent, path }) => {
     useEffect(() => {
@@ -22,9 +23,11 @@ export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, p
     };
     a();
 
+    const { t } = useTranslation();
+
     return (
         <Card className="mb-2">
-            <Card.Header className="noto">📂 目錄</Card.Header>
+            <Card.Header className="noto">📂 {t("directory")}</Card.Header>
             <ListGroup variant="flush" style={{ maxHeight: "20vh", overflowY: "auto" }}>
                 {Task.getAllSelectivityTasks(task => task.isUnlocked()).length > 0 ? (
                     Task.getAllSelectivityTasks(task => task.isUnlocked()).map(task => (

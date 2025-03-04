@@ -1,11 +1,13 @@
 import { Card, ListGroup, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Task, { User } from "../../../../libs/Task";
 import { None } from "./None";
+import { useTranslation } from "react-i18next";
 
 export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = ({ forceUpdate }) => {
+    const { t } = useTranslation();
     return (
         <Card>
-            <Card.Header className="noto">🛒 任務商店</Card.Header>
+            <Card.Header className="noto">🛒 {t("task-store")}</Card.Header>
             <ListGroup variant="flush">
                 {Task.getAllSelectivityTasks(task => !task.isUnlocked()).length > 0 ? (
                     Task.getAllSelectivityTasks(task => !task.isUnlocked()).map(task => (
@@ -16,7 +18,7 @@ export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = 
                                 overlay={
                                     !task.canUnlock(User.DEFAULT_USER) ? (
                                         <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
-                                            餘額不足
+                                            {t("insufficient-balance")}
                                         </Tooltip>
                                     ) : <></>
                                 }>
@@ -27,7 +29,7 @@ export const TaskShop: React.FC<{ forceUpdate: React.DispatchWithoutAction }> = 
                                         onClick={() => task.unlockTask(User.DEFAULT_USER, forceUpdate)}
                                         className="noto ms-3"
                                         disabled={!task.canUnlock(User.DEFAULT_USER)}>
-                                        解鎖 (${task.getUnlockPoints()})
+                                        {t("unlock")} (${task.getUnlockPoints()})
                                     </Button>
                                 </span>
                             </OverlayTrigger>

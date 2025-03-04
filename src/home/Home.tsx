@@ -17,7 +17,7 @@ function App() {
     setInterval(() => {
       if (!findUser() || !isNullish(helloMessage)) return;
       const email: string = !isNullish(checkAndGetUser().email) ? (checkAndGetUser().email as string) : '';
-      setHelloMessage(t('greeting') + email);
+      setHelloMessage(t('greeting-prompt') + email);
     }, 100);
   }, []);
 
@@ -56,16 +56,16 @@ function App() {
           </div>
 
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" className="nav-link px-2 link-secondary noto">家</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">Github</a></li>
-            <li><a href="/about" className="nav-link px-2 text-body-secondary noto">關於</a></li>
-            <li><a href="/play" className="nav-link px-2 text-body-secondary noto">玩</a></li>
+            <li><a href="/" className="nav-link px-2 link-secondary noto">{t("home")}</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">{t("github")}</a></li>
+            <li><a href="/about" className="nav-link px-2 text-body-secondary noto">{t("about")}</a></li>
+            <li><a href="/play" className="nav-link px-2 text-body-secondary noto">{t("play")}</a></li>
           </ul>
 
           <div className="col-md-3 text-end">
             {helloMessage !== null ? <span className='noto'>{helloMessage}</span> :
-              (<><a className="btn btn-outline-primary me-2" href="/user" role="button">登入</a>
-                <a className="btn btn-primary" href="/user" role="button">註冊</a></>)
+              (<><a className="btn btn-outline-primary me-2" href="/user" role="button">{t("login")}</a>
+                <a className="btn btn-primary" href="/user" role="button">{t("register")}</a></>)
             }
           </div>
         </header>
@@ -84,12 +84,12 @@ function App() {
           </div>
         </div>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-1 noto">不管你是否會玩 Minecraft，都能透過我們的教學來<mark className='warning'>輕鬆學習程式語言</mark>。</p>
-          <p className="lead mb-1 noto">透過<mark className='danger'>模組製作</mark>過程，你將掌握程式設計的基礎概念，並創造屬於自己的遊戲世界。</p>
-          <p className="lead mb-1 noto"><mark>不需要任何經驗</mark>，只要你想，我們的指導將帶領你一步步完成每一個挑戰。</p>
-          <p className="lead mb-4 noto">準備好開始了嗎？<mark className='warning'>點擊下面的按鈕</mark>，讓我們一起進入程式設計的世界吧！</p>
+          <p className="lead mb-1 noto" dangerouslySetInnerHTML={{ __html: t('learn-programming') }}></p>
+          <p className="lead mb-1 noto" dangerouslySetInnerHTML={{ __html: t('mod-creation') }}></p>
+          <p className="lead mb-1 noto" dangerouslySetInnerHTML={{ __html: t('no-experience-needed') }}></p>
+          <p className="lead mb-4 noto" dangerouslySetInnerHTML={{ __html: t('ready-to-start') }}></p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <Button type="button" className="btn btn-primary btn-lg px-4 gap-3 noto" href="/get-start">開始</Button>
+            <Button type="button" className="btn btn-primary btn-lg px-4 gap-3 noto" href="/get-start">{t('start')}</Button>
           </div>
         </div>
       </div>
@@ -103,10 +103,10 @@ function App() {
           </a>
 
           <ul className="nav col-md-4 justify-content-end">
-            <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary noto">家</a></li>
-            <li className="nav-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">Github</a></li>
-            <li className="nav-item"><a href="/about" className="nav-link px-2 text-body-secondary noto">關於</a></li>
-            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary noto">玩</a></li>
+            <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary noto">{t("home")}</a></li>
+            <li className="nav-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">{t("github")}</a></li>
+            <li className="nav-item"><a href="/about" className="nav-link px-2 text-body-secondary noto">{t("about")}</a></li>
+            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary noto">{t("play")}</a></li>
           </ul>
         </footer>
       </div>

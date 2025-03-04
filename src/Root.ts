@@ -6,7 +6,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
 
 export function preload() {
-    runTasks();
     init();
     initI18n();
     useLayoutEffect(() => {
@@ -26,37 +25,27 @@ let inited: boolean = false;
 function initI18n() {
     if (!inited) {
         i18next
-        .use(Backend)
-        .use(LanguageDetector)
-        .use(initReactI18next)
-        .init({
-            fallbackLng: 'zh-TW',
-            debug: true,
-            interpolation: {
-                escapeValue: false,
-            },
-            backend: {
-                loadPath: '/{{ns}}/{{lng}}.json',
-            },
-            detection: {
-                order: ['navigator', 'querystring', 'cookie', 'localStorage', 'path', 'subdomain'],
-                caches: ['localStorage', 'cookie'],
-            },
-        });
+            .use(Backend)
+            .use(LanguageDetector)
+            .use(initReactI18next)
+            .init({
+                fallbackLng: 'zh-TW',
+                debug: import.meta.env.DEV,
+                interpolation: {
+                    escapeValue: false,
+                },
+                backend: {
+                    loadPath: '/{{ns}}/{{lng}}.json',
+                },
+                detection: {
+                    order: ['navigator', 'querystring', 'cookie', 'localStorage', 'path', 'subdomain'],
+                    caches: ['localStorage', 'cookie'],
+                },
+            });
         inited = true;
     }
 }
 
 export interface Task {
     runnable: () => void;
-}
-
-const TASK_LIST: Task[] = [];
-
-export function addTask(task: Task): void {
-    TASK_LIST.push(task);
-}
-
-export function runTasks(): void {
-    setInterval(() => TASK_LIST.forEach(task => task.runnable()), 100);
 }
