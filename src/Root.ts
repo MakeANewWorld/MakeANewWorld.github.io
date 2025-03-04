@@ -45,7 +45,3 @@ function initI18n() {
         inited = true;
     }
 }
-
-export interface Task {
-    runnable: () => void;
-}
