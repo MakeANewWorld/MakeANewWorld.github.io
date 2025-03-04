@@ -35,7 +35,7 @@ function App() {
       })
       .then((text) => {
         setMarkdownContent(text.split("\n").slice(1).join("\n"));
-        setTitle(text.split('\n')[0].replace('\r', '').replace('#', ''));
+        setTitle(text.split('\n')[0].replace(/[\r#]+/g, ''));
       })
       .catch((err) => console.error("Markdown loading error:", err));
   };
