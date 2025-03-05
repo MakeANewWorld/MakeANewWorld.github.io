@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { Container, Row, Col, Card, Button, Alert, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { preload } from '../../Root';
+import { setAll } from '../../Root';
 import { createUserWithEmail, signInWithEmail, signInWithGoogle } from './User';
 import { FcGoogle } from "react-icons/fc";
 import { FirebaseError } from 'firebase/app';
-import { getErrorTranslate } from './ErrorHadler';
 import { ConfirmPassword } from './form/ConfirmPassword';
 import { MailInput } from './form/MailInput';
 import { PasswordInput } from './form/PasswordInput';
 import { useTranslation } from 'react-i18next';
+import { preload } from 'react-dom';
 
-function App() {
-    preload();
+export const User: React.FC<{ }> = ({ }) => {
+    setAll();
+    preload('crepper.svg', { as: 'image' });
+
     const { t } = useTranslation();
     const [okMessage, setOkMessage] = useState<string | null>(null);
     const [isLogin, setIsLogin] = useState(true);
@@ -45,7 +47,7 @@ function App() {
             setOkMessage(null);
 
             const action = t(isLogin ? "login" : "register");
-            const message = error instanceof FirebaseError ? getErrorTranslate(error) : error.message;
+            const message = error instanceof FirebaseError ? error.code : error.message;
             setErrorMessage(`❌ ${action} ${t("failure")}: ${message}`);
         }
     };
@@ -105,6 +107,4 @@ function App() {
             </Row>
         </Container>
     );
-}
-
-export default App;
+};

@@ -1,16 +1,10 @@
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import CopyIcon from "./copy/CopyIcon";
+import { CopyIcon } from "./copy/CopyIcon";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import remarkGfm from 'remark-gfm'
-
-type MarkdownRendererProps = {
-    markdownContent: string,
-    path: string,
-    className: string
-};
 
 function code({ node, inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
@@ -31,7 +25,7 @@ function code({ node, inline, className, children, ...props }: any) {
     </code>;
 }
 
-export default function MarkdownRenderer({ className, markdownContent }: MarkdownRendererProps) {
+export const MarkdownRenderer: React.FC<{ markdownContent: string, className: string }> = ({ className, markdownContent }) => {
     // useEffect(() => {
     //     const a = async () => {
     //         const savedScroll = await getItem(`scroll-${path}`);
@@ -55,4 +49,4 @@ export default function MarkdownRenderer({ className, markdownContent }: Markdow
             {markdownContent}
         </Markdown>
     );
-}
+};

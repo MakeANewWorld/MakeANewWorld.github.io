@@ -1,15 +1,21 @@
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import { preload } from '../Root';
+import { setAll } from '../Root';
 import { FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { checkAndGetUser, findUser } from '../pages/user/User';
 import { isNullish } from 'utility-types';
 import { useTranslation } from 'react-i18next';
+import { preload } from 'react-dom';
+import { Links } from './Links';
 
-function App() {
-  preload();
+export const Home: React.FC<{ }> = ({ }) => {
+  setAll();
+  preload('crepper.svg', { as: 'image' });
+  preload('java-logo.svg', { as: 'image' });
+  preload('minecraft-logo.svg', { as: 'image' });
+
   const [helloMessage, setHelloMessage] = useState<string | null>(null);
   const { t } = useTranslation();
 
@@ -56,10 +62,7 @@ function App() {
           </div>
 
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" className="nav-link px-2 link-secondary noto">{t("home")}</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">{t("github")}</a></li>
-            <li><a href="/about" className="nav-link px-2 text-body-secondary noto">{t("about")}</a></li>
-            <li><a href="/play" className="nav-link px-2 text-body-secondary noto">{t("play")}</a></li>
+            <Links t={t}></Links>
           </ul>
 
           <div className="col-md-3 text-end">
@@ -103,15 +106,10 @@ function App() {
           </a>
 
           <ul className="nav col-md-4 justify-content-end">
-            <li className="nav-item"><a href="/" className="nav-link px-2 link-secondary noto">{t("home")}</a></li>
-            <li className="nav-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/MakeANewWorld/MakeANewWorld.github.io" className="nav-link px-2 text-body-secondary noto">{t("github")}</a></li>
-            <li className="nav-item"><a href="/about" className="nav-link px-2 text-body-secondary noto">{t("about")}</a></li>
-            <li className="nav-item"><a href="/play" className="nav-link px-2 text-body-secondary noto">{t("play")}</a></li>
+            <Links t={t}></Links>
           </ul>
         </footer>
       </div>
     </>
   )
-}
-
-export default App
+};

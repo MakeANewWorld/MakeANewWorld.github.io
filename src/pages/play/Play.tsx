@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Top from './topBar/TopBar';
-import MarkdownRenderer from './markdown/MarkdownRenderer';
+import { Top } from './topBar/TopBar';
+import { MarkdownRenderer } from './markdown/MarkdownRenderer';
 import WindowSizeUtils from '../../libs/WindowSize';
-import { preload } from '../../Root';
+import { setAll } from '../../Root';
 import { Video } from '../../weights/Video';
 import { useTranslation } from 'react-i18next';
 
-function App() {
-  preload();
+export const Play: React.FC<{ }> = ({ }) => {
+  setAll();
 
   const [isSplit, setIsSplit] = useState(true);
   useEffect(() => {
@@ -70,9 +70,7 @@ function App() {
   return (
     <Container fluid className="p-0 position-relative min-vh-100">
       <Top className="fixed-top d-flex flex-column align-items-center top-0 start-0 end-0 shadow-sm bg-body" path={path} title={title} setMarkdownContent={loadMarkdown}></Top>
-      <MarkdownRenderer className="p-4 mt-5 markdown-content mkd" markdownContent={markdownContent} path={path} />
+      <MarkdownRenderer className="p-4 mt-5 markdown-content mkd" markdownContent={markdownContent} />
     </Container >
   );
-}
-
-export default App;
+};

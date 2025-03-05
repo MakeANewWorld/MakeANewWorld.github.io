@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect, useReducer } from "react";
 import { Button } from "react-bootstrap";
-import PointRenderer from "./point/PointRenderer";
+import { PointRenderer } from "./point/PointRenderer";
 import { PiTarget } from "react-icons/pi";
 import { TaskShop } from "./task/TaskShop";
 import { TaskList } from "./task/TaskList";
 import { Directory } from "./Directory";
 
-const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (path: string) => void, path: string}> = ({ title, setMarkdownContent, className, path }) => {
+export const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (path: string) => void, path: string }> = ({ title, setMarkdownContent, className, path }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,5 +48,3 @@ const Top: React.FC<{ title: string, className?: string, setMarkdownContent: (pa
         </div>
     );
 };
-
-export default Top;

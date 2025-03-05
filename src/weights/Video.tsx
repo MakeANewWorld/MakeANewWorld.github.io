@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export const Video: React.FC<{ second: number; src: string; keey?: string }> = ({ second, src, keey }) => {
+export const Video: React.FC<{ second: number; src: string; elementKey?: string }> = ({ second, src, elementKey }) => {
     const [isPlaying, setIsPlaying] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,7 +25,7 @@ export const Video: React.FC<{ second: number; src: string; keey?: string }> = (
     }, [src]);
 
     return (
-        <video ref={videoRef} onEnded={handleVideoEnd} muted key={keey}>
+        <video ref={videoRef} onEnded={handleVideoEnd} muted key={elementKey}>
             <source src={src} type="video/mp4" />
         </video>
     );

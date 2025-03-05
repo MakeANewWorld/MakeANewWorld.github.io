@@ -1,13 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../Root.css';
-import { preload } from '../../Root';
+import { setAll } from '../../Root';
 
-function App() {
-  preload();
+export const About: React.FC<{ }> = ({ }) => {
+  setAll();
 
   return (
     <> </>
   );
-}
-
-export default App;
+};

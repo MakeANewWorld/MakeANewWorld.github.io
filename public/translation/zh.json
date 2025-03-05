@@ -28,5 +28,41 @@
     "show-password": "顯示",
     "confirm-password": "驗證密碼",
     "input-email": "輸入電子郵件",
-    "email": "電子郵件"
+    "email": "電子郵件",
+
+    "nothing-here": "這裡沒有東西了，去別的地方看看吧~",
+    
+    "claim": "領取",
+    "not-finished-reading": "目前尚未閱讀完成 (於頁面最底部)",
+    "not-on-task-page": "目前不在此任務的頁面",
+    "task": "任務",
+
+    "task-store": "任務商店",
+    "insufficient-balance": "餘額不足",
+    "unlock": "解鎖",
+
+    "directory": "目錄",
+
+    "adjust-window-size": "請調整視窗大小，使得視窗寬度接近螢幕寬度的1/2，以顯示完整內容。",
+    "adjust-window-height": "並請將視窗高度調整至占滿除工作列的螢幕高度。",
+    "current-height": "目前高度",
+    "current-width": "目前寬度",
+
+    "download-file": "我們需要先下載一個檔案，請點<a href='/install.bat' download>這裡</a>下載。",
+    "open-file": "請打開剛剛下載的檔案，並點選<u>是</u>。",
+    "wait-accept": "請等待腳本<b>執行完成</b>，出現此畫面後請點選<u>Accept</u>。",
+    "follow-video": "請按照影片操作。",
+    "trust-project": "請點選<u>Trust Project</u>。",
+    "click-cancel": "請點選<u>Cancel</u>。",
+    "exclude-folders": "請點選<u>Exclude Folders</u>。",
+    "close-pop": "請按照影片關閉提示。",
+    "close-pop-2": "請按照影片關閉提示。",
+    "gradle-setting": "請按照影片操作。",
+    "gradle-setting-ing": "請按照影片操作。",
+    "skip-ok": "請依序點擊<u>Skip</u>、<u>OK</u>。",
+    "click-refresh": "請點擊🔄。",
+    "install-process": "安裝完整過程(10倍速)，依據網路速度可能有差異。",
+    "install-done": "若出現此畫面(請務必檢查<b>右下角藍色長條跑完</b>)代表安裝成功，請點選右上角的 ☐ 放大視窗。",
+    "close-script": "請切換到腳本視窗並點選 ✖ 以關閉腳本。",
+    "setup-done": "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩。"
 }

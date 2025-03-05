@@ -46,5 +46,23 @@
     "adjust-window-size": "Please adjust the window size to make the width about half of the screen width to display the full content.",
     "adjust-window-height": "Also, please adjust the window height to fill the screen height, excluding the taskbar.",
     "current-height": "Current height",
-    "current-width": "Current width"
+    "current-width": "Current width",
+
+    "download-file": "We need to download a file, please click <a href='/install.bat' download>here</a> to download.",
+    "open-file": "Please open the downloaded file and click <u>Yes</u>.",
+    "wait-accept": "Please wait for the script to <b>complete</b>, once you see this screen, click <u>Accept</u>.",
+    "follow-video": "Please follow the video instructions.",
+    "trust-project": "Please click <u>Trust Project</u>.",
+    "click-cancel": "Please click <u>Cancel</u>.",
+    "exclude-folders": "Please click <u>Exclude Folders</u>.",
+    "close-pop": "Please close the prompt as shown in the video.",
+    "close-pop-2": "Please close the prompt as shown in the video.",
+    "gradle-setting": "Please follow the video instructions.",
+    "gradle-setting-ing": "Please follow the video instructions.",
+    "skip-ok": "Please click <u>Skip</u>, then <u>OK</u>.",
+    "click-refresh": "Please click 🔄.",
+    "install-process": "Full installation process (10x speed), may vary depending on network speed.",
+    "install-done": "If you see this screen, please make sure the <b>blue progress bar in the bottom right</b> is complete. This indicates a successful installation. Click the ☐ maximize button in the top right.",
+    "close-script": "Please switch to the script window and click ✖ to close the script.",
+    "setup-done": "Everything is set up, please click <a href='/play'>here</a> to play."
 }
