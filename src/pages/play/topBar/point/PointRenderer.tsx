@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { User } from "../../../../libs/Task";
+import { User } from "@/libs/Task";
 
 export const PointRenderer: React.FC<{ }> = ({ }) => {
     const [points, setPoints] = useState<number>(0);

@@ -1,10 +1,10 @@
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import { setAll } from '../Root';
+import { setAll } from '@/Root';
 import { FiX } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
-import { checkAndGetUser, findUser } from '../pages/user/User';
+import { checkAndGetUser, findUser } from '@/pages/user/User';
 import { isNullish } from 'utility-types';
 import { useTranslation } from 'react-i18next';
 import { preload } from 'react-dom';

@@ -11,7 +11,7 @@ import { PasswordInput } from './form/PasswordInput';
 import { useTranslation } from 'react-i18next';
 import { preload } from 'react-dom';
 
-export const User: React.FC<{ }> = ({ }) => {
+export const User: React.FC<{}> = ({ }) => {
     setAll();
     preload('crepper.svg', { as: 'image' });
 
@@ -52,7 +52,24 @@ export const User: React.FC<{ }> = ({ }) => {
         }
     };
 
-    const googleLogin = async () => await signInWithGoogle();
+    const googleLogin = async () => {
+        try {
+            await signInWithGoogle();
+            setOkMessage("✔️ " + t("login-success"));
+            setErrorMessage(null);
+            if (history.length > 0) {
+                history.back();
+            } else {
+                location.href = "/";
+            }
+        } catch (error: any) {
+            setOkMessage(null);
+
+            const action = t(isLogin ? "login" : "register");
+            const message = error instanceof FirebaseError ? error.code : error.message;
+            setErrorMessage(`❌ ${action} ${t("failure")}: ${message}`);
+        }
+    };
 
     return (
         <Container className="d-flex justify-content-center align-items-center vh-100">

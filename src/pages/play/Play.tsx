@@ -3,9 +3,9 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Top } from './topBar/TopBar';
 import { MarkdownRenderer } from './markdown/MarkdownRenderer';
-import WindowSizeUtils from '../../libs/WindowSize';
-import { setAll } from '../../Root';
-import { Video } from '../../weights/Video';
+import WindowSizeUtils from '@/libs/WindowSize';
+import { setAll } from '@/Root';
+import { Video } from '@/weights/Video';
 import { useTranslation } from 'react-i18next';
 
 export const Play: React.FC<{ }> = ({ }) => {
