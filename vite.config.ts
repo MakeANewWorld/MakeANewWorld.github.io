@@ -28,6 +28,7 @@ export default defineConfig({
         play: 'play.html',
         about: 'about.html',
         user: 'user.html',
+        blockToLanguage: 'blockToLanguage.html'
       },
       output: {
         manualChunks(id) {
