@@ -31,7 +31,7 @@ export const BlocklyApp = () => {
 
     let init: boolean = false;
 
-    const src = `./node_modules/blockly/msg/${language}.js`;
+    const src = `blockly/msg/${language}.js`;
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -64,7 +64,7 @@ export const BlocklyApp = () => {
             }
 
             setWorkspace(Blockly.inject(blocklyDivRef.current, {
-                media: './node_modules/blockly/media/',
+                media: 'blockly/media/',
                 toolbox: processToolBox(language),
                 rtl: LANGUAGE_RTL.includes(language),
                 renderer: 'thrasos',
