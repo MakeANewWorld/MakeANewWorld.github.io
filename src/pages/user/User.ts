@@ -1,7 +1,6 @@
-import { FirebaseApp, FirebaseError, initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
 import { Database, get, getDatabase, ref, set } from "firebase/database";
-import { useTranslation } from "react-i18next";
 
 export let app: FirebaseApp | null = null;
 export let auth: Auth | null = null;
