@@ -1,4 +1,6 @@
 {
+    "site-name": "MakeANewWorld",
+    "welcome": "Welcome to MakeANewWorld.",
     "greeting": "Welcome",
 
     "greeting-prompt": "Welcome, ",
@@ -7,7 +9,7 @@
     "about": "About",
     "play": "Play",
     "login": "Login",
-    "register": "Register",
+    "sign-up": "Sign up",
     "start": "Start",
 
     "learn-programming": "No matter if you play Minecraft or not, you can <mark class='warning'>easily learn programming</mark> through our tutorials.",
@@ -24,11 +26,9 @@
 
     "input-password": "Enter your password",
     "password": "Password",
-    "hidden-password": "Hidden",
-    "show-password": "Show",
     "confirm-password": "Confirm Password",
-    "input-email": "Enter your email",
     "email": "Email",
+    "or": "Or",
 
     "nothing-here": "There's nothing here, try looking elsewhere~",
 

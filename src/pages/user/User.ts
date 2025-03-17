@@ -1,6 +1,7 @@
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { FirebaseApp, FirebaseError, initializeApp } from "firebase/app";
 import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
 import { Database, get, getDatabase, ref, set } from "firebase/database";
+import { useTranslation } from "react-i18next";
 
 export let app: FirebaseApp | null = null;
 export let auth: Auth | null = null;
@@ -48,6 +49,14 @@ function checkState() {
     if (app === null) throw new Error("app not initialized");
     if (auth === null) throw new Error("auth not initialized");
     if (database === null) throw new Error("database not initialized");
+}
+
+export function back() {
+    if (history.length > 0) {
+        history.back();
+    } else {
+        location.href = "/";
+    }
 }
 
 export async function signInWithGoogle() {

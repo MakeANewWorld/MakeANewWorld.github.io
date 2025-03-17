@@ -1,10 +1,14 @@
 @import url(/public/fonts/NotoSansTC.css);
 @import url(/public/fonts/JetBrainsMono.css);
 @import url(/public/fonts/Inter.css);
-/* @import "tailwindcss";
 
+@import "tailwindcss";
 @plugin "tailwindcss-animate";
-@custom-variant dark (&:is(.dark *)); */
+@custom-variant dark (&:is(.dark *));
+
+body {
+    background-color: transparent !important;
+}
 
 .cur-point {
     cursor: pointer !important;
@@ -122,6 +126,7 @@ mark {
     border-radius: 0px !important;
     background: none !important;
     border-bottom: 3px solid #d8ebb7 !important;
+    color: inherit !important;
 }
 
 mark.warning {

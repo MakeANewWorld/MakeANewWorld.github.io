@@ -1,13 +1,15 @@
 {
+    "site-name": "MakeANewWorld",
+    "welcome": "歡迎來到 MakeANewWorld。",
     "greeting": "歡迎",
 
     "greeting-prompt": "歡迎, ",
-    "home": "家",
+    "home": "主頁",
     "github": "Github",
     "about": "關於",
     "play": "玩",
     "login": "登入",
-    "register": "註冊",
+    "sign-up": "註冊",
     "start": "開始",
 
     "learn-programming": "不管你是否會玩 Minecraft，都能透過我們的教學來<mark class='warning'>輕鬆學習程式語言</mark>。",
@@ -24,11 +26,9 @@
     
     "input-password": "輸入密碼",
     "password": "密碼",
-    "hidden-password": "隱藏",
-    "show-password": "顯示",
     "confirm-password": "驗證密碼",
-    "input-email": "輸入電子郵件",
     "email": "電子郵件",
+    "or": "或",
 
     "nothing-here": "這裡沒有東西了，去別的地方看看吧~",
     
