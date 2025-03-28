@@ -1,40 +1,20 @@
-import { Button, Card, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
-import Task, { User } from "@/libs/Task";
+import Task from "@/libs/Task";
 import { None } from "./None";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { debouncedSetScroll, isScrollToBottom } from "@/pages/user/ScrollHandler";
+import { checkAndGetUser } from "@/pages/user/User";
+import { ClaimButton } from "../button/ClaimButton";
+import { Prompt } from "../cards/Prompt";
+import { Card } from "../cards/Card";
 
 export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path: string }> = ({ forceUpdate, path }) => {
-    useEffect(() => {
-        const a = async () => {
-            await Task.loadTasksFromLocalStorage();
-            fetch("/markdown/tasklist.json")
-                .then((res) => res.json())
-                .then((data) => {
-                    const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
-                    data.forEach((taskInfo: { points: number; name: string; path: string; unlockPoints: number }) => {
-                        if (!existingTasks.has(taskInfo.name)) {
-                            new Task(taskInfo.points, taskInfo.name, taskInfo.path, taskInfo.unlockPoints);
-                        }
-                    });
-                })
-                .catch((err) => console.error("Error loading markdown.json:", err));
-        };
-        a();
-    }, []);
-
     const [isBottom, setIsBottom] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + window.innerHeight;
-            const pageHeight = document.documentElement.scrollHeight;
-
-            if (scrollPosition >= pageHeight - 10) {
-                setIsBottom(true);
-            } else {
-                setIsBottom(false);
-            }
+        const handleScroll = async () => {
+            debouncedSetScroll(checkAndGetUser());
+            setIsBottom(isScrollToBottom());
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -43,46 +23,27 @@ export const TaskList: React.FC<{ forceUpdate: React.DispatchWithoutAction, path
 
     const { t } = useTranslation();
 
+    if (Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).length === 0) {
+        return (<Card title={`📋 ${t("task")}`}>
+            <None />
+        </Card>);
+    }
+
     return (
-        <Card className="mb-2">
-            <Card.Header className="noto">📋 {t("task")}</Card.Header>
-            <ListGroup variant="flush">
-                {Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).length > 0 ? (
-                    Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).map(task => (
-                        <ListGroup.Item key={task.getHashCode()}
-                            className="d-flex justify-content-between cur-point noto align-items-center">
-                            {task.getTaskName()}
-                            <OverlayTrigger
-                                placement="top"
-                                overlay={
-                                    task.getPath() !== path ? (
-                                        <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
-                                            {t("not-on-task-page")}
-                                        </Tooltip>
-                                    ) :
-                                        !isBottom ?
-                                            (
-                                                <Tooltip id={`tooltip-${task.getHashCode()}`} style={{ zIndex: 2000 }}>
-                                                    {t("not-finished-reading")}
-                                                </Tooltip>
-                                            )
-                                            : <></>
-                                }>
-                                <span>
-                                    <Button
-                                        variant="outline-primary"
-                                        size="sm"
-                                        onClick={() => task.completeTask(User.DEFAULT_USER, forceUpdate)}
-                                        className="noto ms-3"
-                                        disabled={task.getPath() !== path || !isBottom}>
-                                        {t("claim")} ${task.getPoints()}
-                                    </Button>
-                                </span>
-                            </OverlayTrigger>
-                        </ListGroup.Item>
-                    ))
-                ) : (<None />)}
-            </ListGroup>
+        <Card title={`📋 ${t("task")}`}>
+            {Task.getAllSelectivityTasks(task => !task.isCompleted() && task.isUnlocked()).map(task => (
+                <li key={task.getHashCode()} className="flex justify-between items-center px-4 py-3 cursor-pointer">
+                    <p>{task.getTaskName()}</p>
+
+                    <div className="group relative">
+                        <ClaimButton canUnlock={task.getPath() === path && isBottom} task={task} forceUpdate={forceUpdate} />
+                        {(task.getPath() !== path || !isBottom) && (
+                            <Prompt content={task.getPath() !== path ? t("not-on-task-page") :
+                                (!isBottom ? t("not-finished-reading") : '')} />
+                        )}
+                    </div>
+                </li>
+            ))}
         </Card>
     );
 };

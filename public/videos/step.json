@@ -1,0 +1,70 @@
+[
+    {
+        "video": "/videos/download.mkv",
+        "subtitleKey": "download-file"
+    },
+    {
+        "video": "/videos/open_file.mkv",
+        "subtitleKey": "open-file"
+    },
+    {
+        "video": "/videos/accept.mkv",
+        "subtitleKey": "wait-accept"
+    },
+    {
+        "video": "/videos/pre_setting.mkv",
+        "subtitleKey": "follow-video"
+    },
+    {
+        "video": "/videos/trust_project.mkv",
+        "subtitleKey": "trust-project"
+    },
+    {
+        "video": "/videos/cancel.mkv",
+        "subtitleKey": "click-cancel"
+    },
+    {
+        "video": "/videos/exclude_folders.mkv",
+        "subtitleKey": "exclude-folders"
+    },
+    {
+        "video": "/videos/close_pop.mkv",
+        "subtitleKey": "close-pop"
+    },
+    {
+        "video": "/videos/close_pop_2.mkv",
+        "subtitleKey": "close-pop-2"
+    },
+    {
+        "video": "/videos/gradle_setting.mkv",
+        "subtitleKey": "gradle-setting"
+    },
+    {
+        "video": "/videos/gradle_setting_ing.mkv",
+        "subtitleKey": "gradle-setting-ing"
+    },
+    {
+        "video": "/videos/skip_ok.mkv",
+        "subtitleKey": "skip-ok"
+    },
+    {
+        "video": "/videos/rerun.mkv",
+        "subtitleKey": "click-refresh"
+    },
+    {
+        "video": "/videos/install_process.mp4",
+        "subtitleKey": "install-process"
+    },
+    {
+        "video": "/videos/finish.mkv",
+        "subtitleKey": "install-done"
+    },
+    {
+        "video": "/videos/end.mkv",
+        "subtitleKey": "close-script"
+    },
+    {
+        "video": "",
+        "subtitleKey": "setup-done"
+    }
+]

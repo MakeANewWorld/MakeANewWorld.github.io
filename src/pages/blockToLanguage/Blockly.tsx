@@ -92,7 +92,7 @@ export const BlocklyApp = () => {
             <SyntaxHighlighter style={oneDark} PreTag="div" language={languageName}>
                 {String(code).replace(/\n$/, '')}
             </SyntaxHighlighter>
-            <CopyIcon className="absolute top-10px right-10px" text={code} />
+            <CopyIcon className="absolute top-2.5 right-2.5" text={code} />
         </div>;
     }
 

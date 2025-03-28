@@ -1,52 +1,41 @@
-import { useEffect } from "react";
-import { Card, ListGroup } from "react-bootstrap";
 import Task from "@/libs/Task";
 import { None } from "./task/None";
-import { getItem, setItem } from "@/pages/user/User";
+import { ItemType, MANAGER } from "@/pages/user/ItemHandler";
 import { useTranslation } from "react-i18next";
+import { checkAndGetUser } from "@/pages/user/User";
+import { useEffect } from "react";
+import { Card } from "./cards/Card";
 
-export const Directory: React.FC<{ setMarkdownContent: (path: string) => void, path: string }> = ({ setMarkdownContent, path }) => {
+export const Directory: React.FC<{ setMarkdownContent: (path: string) => void }> = ({ setMarkdownContent }) => {
     useEffect(() => {
-        const a = async () => {
-            const lastViewed = await getItem("lastViewedMarkdown");
-            if (lastViewed) {
-                setMarkdownContent(lastViewed);
-            }
-        };
-        a();
-    }, [setMarkdownContent]);
+        const lastViewed = MANAGER.getCurrentData()[ItemType.LAST_VIEWED_MARKDOWN];
 
-    const a = async () => {
-        if (await getItem("lastViewedMarkdown") === null) {
-            await setItem("lastViewedMarkdown", path);
+        if (lastViewed !== undefined) {
+            setMarkdownContent(lastViewed);
         }
-    };
-    a();
+    }, []);
 
     const { t } = useTranslation();
 
+    if (Task.getAllSelectivityTasks(task => task.isUnlocked()).length === 0) {
+        return (<Card title={`📂 ${t("directory")}`} bottom={false} contentClasses="overflow-y-auto">
+            <None/>
+        </Card>);
+    }
+
     return (
-        <Card className="mb-2">
-            <Card.Header className="noto">📂 {t("directory")}</Card.Header>
-            <ListGroup variant="flush" style={{ maxHeight: "20vh", overflowY: "auto" }}>
-                {Task.getAllSelectivityTasks(task => task.isUnlocked()).length > 0 ? (
-                    Task.getAllSelectivityTasks(task => task.isUnlocked()).map(task => (
-                        <ListGroup.Item
-                            key={task.getHashCode()}
-                            className="d-flex justify-content-between noto hover-re-opt cur-point"
-                            onClick={() => {
-                                const path = task.getPath();
-                                setMarkdownContent(path);
-                                const a = async () => await setItem("lastViewedMarkdown", path);
-                                a();
-                            }}>
-                            {task.getTaskName()}
-                        </ListGroup.Item>
-                    ))
-                ) : (
-                    <None />
-                )}
-            </ListGroup>
+        <Card title={`📂 ${t("directory")}`} bottom={false} contentClasses="overflow-y-auto">
+            {Task.getAllSelectivityTasks(task => task.isUnlocked()).map(task => (
+                <li key={task.getHashCode()}
+                    className="flex justify-between px-4 py-3 hover:bg-(--primary-foreground) dark:hover:bg-[#2c2c2c] cursor-pointer"
+                    onClick={async () => {
+                        const path = task.getPath();
+                        setMarkdownContent(path);
+                        await MANAGER.set(checkAndGetUser(), ItemType.LAST_VIEWED_MARKDOWN, path);
+                    }}>
+                    <p>{task.getTaskName()}</p>
+                </li>
+            ))}
         </Card>
     );
 };

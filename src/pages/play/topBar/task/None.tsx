@@ -1,11 +1,10 @@
-import { ListGroup } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-export const None: React.FC<{}> = ({ }) => {
+export const None: React.FC = () => {
     const { t } = useTranslation();
     return (
-        <ListGroup.Item className="text-center text-muted noto">
+        <li className="list-none p-3 text-center text-gray-500">
             {t("nothing-here")}
-        </ListGroup.Item>
+        </li>
     );
 };

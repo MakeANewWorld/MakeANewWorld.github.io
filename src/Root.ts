@@ -9,8 +9,7 @@ export function setAll() {
     init();
     initI18n();
     useLayoutEffect(() => {
-        const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        document.body.setAttribute('data-bs-theme', mode);
+        const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         (document.querySelector(':root') as HTMLElement).style.colorScheme = mode;
     }, []);
     if (!findUser()) {
@@ -20,10 +19,14 @@ export function setAll() {
     }
 }
 
-let inited: boolean = false;
+export function runAsync(call: () => void): void {
+    call();
+}
+
+let isInit: boolean = false;
 
 function initI18n() {
-    if (!inited) {
+    if (!isInit) {
         i18next
             .use(Backend)
             .use(LanguageDetector)
@@ -42,6 +45,6 @@ function initI18n() {
                     caches: ['localStorage', 'cookie'],
                 },
             });
-        inited = true;
+        isInit = true;
     }
 }

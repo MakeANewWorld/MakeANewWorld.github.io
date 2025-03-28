@@ -5,44 +5,28 @@ import { CopyIcon } from "./copy/CopyIcon";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import remarkGfm from 'remark-gfm'
+import { checkAndGetUser } from "@/pages/user/User";
+import useAsyncEffect from "use-async-effect";
+import { scrollToSave } from "@/pages/user/ScrollHandler";
 
 function code({ node, inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
-
     if (!inline && match) {
         const code = String(children).replace(/\n$/, '');
-
-        return <div className="position-relative">
+        return <div className="relative">
             <SyntaxHighlighter style={oneDark} PreTag="div" language={match[1]} {...props}>
                 {code}
             </SyntaxHighlighter>
-            <CopyIcon className="position-absolute top-10px right-10px" text={children} />
+            <CopyIcon className="absolute top-2.5 right-2.5" text={children} />
         </div>;
     }
-
     return <code className={className} {...props}>
         {children}
     </code>;
 }
 
 export const MarkdownRenderer: React.FC<{ markdownContent: string, className: string }> = ({ className, markdownContent }) => {
-    // useEffect(() => {
-    //     const a = async () => {
-    //         const savedScroll = await getItem(`scroll-${path}`);
-    //         if (savedScroll) {
-    //             (document.querySelector(".mkd") as HTMLElement).scrollTop = parseInt(savedScroll, 10);
-    //         }
-    //     };
-    //     a();
-    // }, [path]);
-
-    // useEffect(() => {
-    //     const handleScroll = async () => {
-    //        await setItem(`scroll-${path}`, (document.querySelector(".mkd") as HTMLElement).scrollTop.toString());
-    //     };
-    //     (document.querySelector(".mkd") as HTMLElement).addEventListener("scroll", handleScroll);
-    //     return () => (document.querySelector(".mkd") as HTMLElement).removeEventListener("scroll", handleScroll);
-    // }, [path]);
+    useAsyncEffect(async () => await scrollToSave(checkAndGetUser()), [markdownContent]);
 
     return (
         <Markdown components={{ code }} className={className} remarkPlugins={[remarkMath, remarkGfm]} rehypePlugins={[rehypeKatex]}>

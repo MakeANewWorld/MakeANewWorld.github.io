@@ -1827,10 +1827,6 @@ export function createTheme(): Blockly.Theme {
             cursorColour: '#000000',
         },
         name: 'modest',
-        fontStyle: {
-            family: 'Noto Sans TC',
-            size: 16,
-        },
         blockStyles: {
             logic_blocks: {
                 colourPrimary: '#A3D8F4',

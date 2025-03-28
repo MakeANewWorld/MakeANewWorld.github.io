@@ -48,7 +48,7 @@
     "current-height": "目前高度",
     "current-width": "目前寬度",
 
-    "download-file": "我們需要先下載一個檔案，請點<a href='/install.bat' download>這裡</a>下載。",
+    "download-file": "我們需要先下載一個檔案，請點<a href='/install.bat' download class='text-blue-500 font-bold'>這裡</a>下載。",
     "open-file": "請打開剛剛下載的檔案，並點選<u>是</u>。",
     "wait-accept": "請等待腳本<b>執行完成</b>，出現此畫面後請點選<u>Accept</u>。",
     "follow-video": "請按照影片操作。",
@@ -64,5 +64,5 @@
     "install-process": "安裝完整過程(10倍速)，依據網路速度可能有差異。",
     "install-done": "若出現此畫面(請務必檢查<b>右下角藍色長條跑完</b>)代表安裝成功，請點選右上角的 ☐ 放大視窗。",
     "close-script": "請切換到腳本視窗並點選 ✖ 以關閉腳本。",
-    "setup-done": "所有東西都已設定，請點<a href='/play'>這裡</a>遊玩。"
+    "setup-done": "所有東西都已設定，請點<a href='/play' class='text-blue-500 font-bold'>這裡</a>遊玩。"
 }

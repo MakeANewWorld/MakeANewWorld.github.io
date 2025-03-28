@@ -19,7 +19,7 @@ export const Links: React.FC<{ t: TFunction<"translation", undefined> }> = ({ t 
             {links.map(({ href, textKey, external }) => (
                 <li key={href} className="nav-item">
                     <a href={href} 
-                        className="nav-link px-2 text-body-secondary noto" 
+                        className="nav-link px-2 text-body-secondary" 
                         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                         {t(textKey)}

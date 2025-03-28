@@ -1,12 +1,14 @@
 import { sha1 } from 'object-hash';
-import { getItem, setItem } from '@/pages/user/User';
+import { ItemType, MANAGER } from "@/pages/user/ItemHandler";
+import { checkAndGetUser } from '@/pages/user/User';
+import { isNullish } from 'utility-types';
 
 export class User {
     private static readonly USERS: User[] = [];
     public static readonly DEFAULT_USER: User = new User();
 
     private points: number = 0;
-    private hook: (number: number) => void = (): void => {};
+    private hook: (number: number) => void = (): void => { };
 
     constructor() {
         User.USERS.push(this);
@@ -28,15 +30,12 @@ export class User {
         this.points += points;
     }
 
-    public static async saveUserToLocalStorage(): Promise<void> {
-        await setItem("userPoints", JSON.stringify(User.DEFAULT_USER.points));
+    public static async saveUserToServer(): Promise<void> {
+        await MANAGER.set(checkAndGetUser(), ItemType.USER_POINTS, User.DEFAULT_USER.points);
     }
 
-    public static async loadUserFromLocalStorage(): Promise<void> {
-        let storedPoints = await getItem("userPoints");
-        if (storedPoints) {
-            User.DEFAULT_USER.points = JSON.parse(storedPoints);
-        }
+    public static async loadUserFromServer(): Promise<void> {
+        User.DEFAULT_USER.points = MANAGER.getCurrentData()[ItemType.USER_POINTS];
     }
 }
 
@@ -93,8 +92,8 @@ export default class Task {
         user.addPoints(this.points);
         user.getHook()(user.getPoints());
 
-        await Task.saveTasksToLocalStorage();
-        await User.saveUserToLocalStorage();
+        await Task.saveTasksToServer();
+        await User.saveUserToServer();
 
         forceUpdate();
     }
@@ -106,8 +105,8 @@ export default class Task {
         user.addPoints(-this.unlockPoints);
         user.getHook()(user.getPoints());
 
-        await Task.saveTasksToLocalStorage();
-        await User.saveUserToLocalStorage();
+        await Task.saveTasksToServer();
+        await User.saveUserToServer();
 
         forceUpdate();
     }
@@ -148,40 +147,24 @@ export default class Task {
         return this.hashCode;
     }
 
-    public static async saveTasksToLocalStorage(): Promise<void> {
-        const tasksData = this.TASK_LIST.map(task => ({
-            points: task.points, 
-            name: task.name,
-            path: task.path,
-            unlockPoints: task.unlockPoints,
-            completed: task.completed,
-            unlocked: task.unlocked,
-            hashCode: task.hashCode
-        }));
-        await setItem("tasks", JSON.stringify(tasksData));
+    public static async saveTasksToServer(): Promise<void> {
+        await MANAGER.set(checkAndGetUser(), ItemType.TASKS, this.TASK_LIST);
     }
 
-    public static async loadTasksFromLocalStorage(): Promise<void> {
-        const tasksData = await getItem("tasks");
-        if (tasksData) {
-            try {
-                const existingTasks = new Set(Task.getAllTasks().map(task => task.getTaskName()));
-                const parsedTasks = JSON.parse(tasksData);
-                parsedTasks.forEach((savedTask: { points: number, name: string, path: string, unlockPoints: number, completed: boolean, unlocked: boolean, hashCode: string }) => {
-                    try {
-                        if (!existingTasks.has(savedTask.name)) {
-                            const task = new Task(savedTask.points, savedTask.name, savedTask.path, savedTask.unlockPoints);
-                            task.completed = savedTask.completed;
-                            task.unlocked = savedTask.unlocked;
-                            task.setHashCode(savedTask.hashCode);
-                        }
-                    } catch (error) {
-                        console.error("Task creation failed", error);
-                    }
-                });
-            } catch (error) {
-                console.error("Error loading tasks from localStorage:", error);
-            }
-        }
+    public static async loadTasksFromServer(): Promise<void> {
+        if (isInit) return;
+        
+        const tasksData = MANAGER.getCurrentData()[ItemType.TASKS];
+        if (isNullish(tasksData)) throw new Error("Why is null?");
+
+        tasksData.forEach(savedTask => {
+            const task = new Task(savedTask.points, savedTask.name, savedTask.path, savedTask.unlockPoints);
+            task.completed = savedTask.completed;
+            task.unlocked = savedTask.unlocked;
+            task.setHashCode(savedTask.hashCode);
+        });
+        isInit = true;
     }
 }
+
+export let isInit = false;

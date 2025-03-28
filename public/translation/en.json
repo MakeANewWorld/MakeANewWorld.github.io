@@ -48,7 +48,7 @@
     "current-height": "Current height",
     "current-width": "Current width",
 
-    "download-file": "We need to download a file, please click <a href='/install.bat' download>here</a> to download.",
+    "download-file": "We need to download a file, please click <a href='/install.bat' download class='text-blue-500 font-bold'>here</a> to download.",
     "open-file": "Please open the downloaded file and click <u>Yes</u>.",
     "wait-accept": "Please wait for the script to <b>complete</b>, once you see this screen, click <u>Accept</u>.",
     "follow-video": "Please follow the video instructions.",
@@ -64,5 +64,5 @@
     "install-process": "Full installation process (10x speed), may vary depending on network speed.",
     "install-done": "If you see this screen, please make sure the <b>blue progress bar in the bottom right</b> is complete. This indicates a successful installation. Click the ☐ maximize button in the top right.",
     "close-script": "Please switch to the script window and click ✖ to close the script.",
-    "setup-done": "Everything is set up, please click <a href='/play'>here</a> to play."
+    "setup-done": "Everything is set up, please click <a href='/play' class='text-blue-500 font-bold'>here</a> to play."
 }
