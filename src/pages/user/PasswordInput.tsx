@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
@@ -9,7 +9,7 @@ interface PasswordInputProps {
     isLogin: boolean,
 }
 
-export const PasswordInput: React.FC<PasswordInputProps> = ({ ref, isConfirm, isLogin }) => {
+export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(({ isConfirm, isLogin }, ref) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const togglePassword = () => setPasswordVisible(!passwordVisible);
 
@@ -33,4 +33,6 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({ ref, isConfirm, is
             </Button>
         </div>
     );
-};
+});
+
+PasswordInput.displayName = "PasswordInput";

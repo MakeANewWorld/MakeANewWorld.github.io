@@ -2,9 +2,20 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+interface Props {
+    ref: React.RefObject<HTMLInputElement | null>,
+    className?: string | undefined,
+    type?: React.HTMLInputTypeAttribute | undefined,
+    id?: string | undefined,
+    placeholder?: string | undefined,
+    required?: boolean | undefined,
+    autoComplete?: string | undefined,
+}
+
+export const Input = React.forwardRef<HTMLInputElement, Props>(({ className, type, id, placeholder, required, autoComplete }, ref) => {
   return (
     <input
+      ref={ref}
       type={type}
       data-slot="input"
       className={cn(
@@ -13,9 +24,10 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         className
       )}
-      {...props}
+      id={id}
+      placeholder={placeholder}
+      required={required}
+      autoComplete={autoComplete}
     />
   )
-}
-
-export { Input }
+});

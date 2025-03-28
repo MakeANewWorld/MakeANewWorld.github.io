@@ -5,15 +5,11 @@ import { useEffect, useState } from 'react';
 import { checkAndGetUser, findUser } from '@/pages/user/User';
 import { isNullish } from 'utility-types';
 import { useTranslation } from 'react-i18next';
-import { preload } from 'react-dom';
 import { Links } from './Links';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const Home: React.FC<{}> = ({ }) => {
   setAll();
-  preload('crepper.svg', { as: 'image' });
-  preload('java-logo.svg', { as: 'image' });
-  preload('minecraft-logo.svg', { as: 'image' });
 
   const [helloMessage, setHelloMessage] = useState<string | null>(null);
   const { t } = useTranslation();

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import vitePluginBundleObfuscator from 'vite-plugin-bundle-obfuscator';
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path';
 
@@ -7,6 +8,10 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react(),
+    vitePluginBundleObfuscator({
+      autoExcludeNodeModules: true,
+      threadPool: true,
+    }),
     tailwindcss()
   ],
   resolve: {

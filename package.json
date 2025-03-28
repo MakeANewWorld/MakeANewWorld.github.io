@@ -41,7 +41,8 @@
     "tailwindcss-animate": "^1.0.7",
     "use-async-effect": "^2.2.7",
     "utility-types": "^3.11.0",
-    "valtio": "^2.1.4"
+    "valtio": "^2.1.4",
+    "vite-plugin-bundle-obfuscator": "^1.4.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
