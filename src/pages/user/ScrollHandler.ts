@@ -2,9 +2,9 @@ import { debounce } from "lodash";
 import { ItemType, MANAGER } from "./ItemHandler";
 import { User } from "firebase/auth";
 
-export function debouncedSetScroll(user: User): void {
-    debounce(async () => await MANAGER.set(user, ItemType.LAST_SCROLL_INDEX, window.scrollY), 300);
-}
+export const debouncedSetScroll = debounce(async (user: User) => {
+    await MANAGER.set(user, ItemType.LAST_SCROLL_INDEX, window.scrollY);
+}, 300);
 
 export function isScrollToBottom(): boolean {
     const scrollPosition = window.scrollY + window.innerHeight;
