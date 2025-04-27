@@ -105,7 +105,7 @@ export const Play: React.FC = () => {
           title={title}
           setMarkdownContent={loadMarkdown}
         />
-        <MarkdownRenderer className="p-4 mt-5 markdown-content mkd" markdownContent={markdownContent} />
+        <MarkdownRenderer className="p-4 mt-10 markdown-content mkd"  markdownContent={markdownContent} />
       </div>
     </ThemeProvider>
   );

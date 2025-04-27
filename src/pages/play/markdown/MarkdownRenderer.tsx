@@ -20,9 +20,9 @@ function code({ node, inline, className, children, ...props }: any) {
             <CopyIcon className="absolute top-2.5 right-2.5" text={children} />
         </div>;
     }
-    return <code className={className} {...props}>
+    return <mark className={className + " warning"} {...props}>
         {children}
-    </code>;
+    </mark>;
 }
 
 export const MarkdownRenderer: React.FC<{ markdownContent: string, className: string }> = ({ className, markdownContent }) => {

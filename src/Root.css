@@ -5,6 +5,33 @@
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
+@tailwind utilities;
+
+@layer utilities {
+    .markdown-content>p,
+    .markdown-content>h3,
+    .markdown-content>h4,
+    .markdown-content>h5,
+    .markdown-content>h6,
+    .markdown-content>ul,
+    .markdown-content>ol,
+    .markdown-content>blockquote,
+    .markdown-content>pre {
+        @apply text-lg;
+    }
+
+    .markdown-content>h1,
+    .markdown-content>h2 {
+        @apply mt-5;
+        @apply mb-5;
+        @apply text-xl;
+    }
+
+    .markdown-content>* {
+        all: revert;
+    }
+}
+
 body {
     background-color: transparent !important;
 }
